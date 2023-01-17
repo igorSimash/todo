@@ -9,6 +9,9 @@ const resources = {
     },
     ua: {
         reg: Ukrainian.registration
+    },
+    pl: {
+
     }
 }
 
@@ -16,6 +19,6 @@ i18next
     .use(initReactI18next)
     .init({
         resources,
-        lng:"ua", //default language
+        lng:"en", //default language
     });
 export default i18next;

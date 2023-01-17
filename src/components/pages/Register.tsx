@@ -7,7 +7,7 @@ import LanguageSelect from "../select/LanguageSelect";
 import {useTranslation} from "react-i18next";
 
 const Register: React.FC = () => {
-    const { t, i18n } = useTranslation('reg');
+    const {t} = useTranslation('reg');
 
     return (
         <div className={'h-screen flex'}>
@@ -25,22 +25,22 @@ const Register: React.FC = () => {
                                 {t('1', {ns: 'reg'})}
                             </span>
                             <span className={'font-light tracking-wide opacity-75'}>
-                                Let's get started
+                                {t('2', {ns: 'reg'})}
                             </span>
                         </div>
                         <div className={'flex flex-col items-start gap-4'}>
-                            <EmailInput label={'Email'} id={'reg-email'}/>
-                            <PasswordInput label={'Password'} id={'reg-pass'}/>
-                            <PasswordInput label={'Repeat password'} id={'reg-rep-pass'}/>
+                            <EmailInput label={t('3', {ns: 'reg'})} id={'reg-email'}/>
+                            <PasswordInput label={t('4', {ns: 'reg'})} id={'reg-pass'}/>
+                            <PasswordInput label={t('5', {ns: 'reg'})} id={'reg-rep-pass'}/>
                         </div>
                         <div>
-                            <SubmitInput value={'Create account'}/>
+                            <SubmitInput value={t('6', {ns: 'reg'})}/>
                         </div>
                     </div>
                 </div>
                 <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end'}>
-                    <span className={'font-semibold'}>Already have an account?</span>
-                    <Link to={'/login'} className={'font-bold text-blue-600 text-lg'}>Sign in</Link>
+                    <span className={'font-semibold'}>{t('7', {ns: 'reg'})}</span>
+                    <Link to={'/login'} className={'font-bold text-blue-600 text-lg'}>{t('8', {ns: 'reg'})}</Link>
                 </div>
             </div>
         </div>

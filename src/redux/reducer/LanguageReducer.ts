@@ -14,3 +14,5 @@ export const languageReducer = (state = initialState, action:ILanguageAction): I
             return state;
     }
 };
+
+export const changeLanguageAction = (payload: string) => ({type: CHANGE_LANGUAGE, payload});
