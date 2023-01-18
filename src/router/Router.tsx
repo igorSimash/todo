@@ -1,8 +1,9 @@
 import {createBrowserRouter} from "react-router-dom";
 import Main from "../components/pages/Main";
-import Register from "../components/pages/Register";
+import RegistrationFinal from "../components/pages/RegistrationFinal";
 import Login from "../components/pages/Login";
 import Todos from "../components/pages/Todos";
+import RegistrationStart from "../components/pages/RegistrationStart";
 
 export const router = createBrowserRouter([
     {
@@ -10,8 +11,12 @@ export const router = createBrowserRouter([
         element: <Main/>
     },
     {
-        path: '/registration',
-        element: <Register/>
+        path: '/registration/start',
+        element: <RegistrationStart/>
+    },
+    {
+        path: '/registration/:email/:date/:token',
+        element: <RegistrationFinal/>
     },
     {
         path: '/login',

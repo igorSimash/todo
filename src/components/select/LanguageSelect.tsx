@@ -32,8 +32,9 @@ const LanguageSelect: React.FC = () => {
                 className="border-2 border-black"
                 onChange={handleChange}
             >
-                {languages.map(language =>
+                {languages.map((language, index) =>
                     <option
+                        key={index}
                         className="w-12"
                         value={language.value}>
                         {language.title}

@@ -1,13 +1,22 @@
-import React from 'react';
-import {Link} from "react-router-dom";
-import EmailInput from "../input/EmailInput";
-import PasswordInput from "../input/PasswordInput";
-import SubmitInput from "../input/SubmitInput";
+import React, {useState} from 'react';
 import LanguageSelect from "../select/LanguageSelect";
-import {useTranslation} from "react-i18next";
+import EmailInput from "../input/EmailInput";
+import SubmitInput from "../input/SubmitInput";
+import {Link} from "react-router-dom";
+import axios from "axios";
 
-const Register: React.FC = () => {
-    const {t} = useTranslation('reg');
+const RegistrationStart:React.FC = () => {
+
+    const [email, setEmail] = useState('');
+    const [submitClicked, setSubmitClicked] = useState(false);
+
+    const handleClick = () => {
+        axios.post(process.env.REACT_APP_API_REG_START as string, {email: email})
+        setSubmitClicked(true);
+    }
+
+    if (submitClicked)
+        return <div></div>
 
     return (
         <div className={'h-screen flex'}>
@@ -22,29 +31,29 @@ const Register: React.FC = () => {
                     <div className={'flex flex-col gap-14 w-80'}>
                         <div className={'flex flex-col gap-2'}>
                             <span className={'font-semibold text-3xl'}>
-                                {t('1', {ns: 'reg'})}
+                                Create a new account
                             </span>
                             <span className={'font-light tracking-wide opacity-75'}>
-                                {t('2', {ns: 'reg'})}
+                                Let's get started
                             </span>
                         </div>
                         <div className={'flex flex-col items-start gap-4'}>
-                            <EmailInput label={t('3', {ns: 'reg'})} id={'reg-email'}/>
-                            <PasswordInput label={t('4', {ns: 'reg'})} id={'reg-pass'}/>
-                            <PasswordInput label={t('5', {ns: 'reg'})} id={'reg-rep-pass'}/>
+                            <EmailInput value={email} onChange={e => setEmail(e.target.value)} label={"Email"} id={'reg-email'}/>
                         </div>
                         <div>
-                            <SubmitInput value={t('6', {ns: 'reg'})}/>
+                            <SubmitInput
+                                onClick={handleClick}
+                                value={"Send an email"}/>
                         </div>
                     </div>
                 </div>
                 <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end'}>
-                    <span className={'font-semibold'}>{t('7', {ns: 'reg'})}</span>
-                    <Link to={'/login'} className={'font-bold text-blue-600 text-lg'}>{t('8', {ns: 'reg'})}</Link>
+                    <span className={'font-semibold'}>Already have an account?</span>
+                    <Link to={'/login'} className={'font-bold text-blue-600 text-lg'}>Sign in</Link>
                 </div>
             </div>
         </div>
     );
 };
 
-export default Register;
+export default RegistrationStart;

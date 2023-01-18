@@ -2,13 +2,22 @@ import React from 'react';
 
 interface ISubmitInput {
     value: string;
+    onClick: Function;
 }
 
-const SubmitInput :React.FC<ISubmitInput> = ({value}) => {
+const SubmitInput :React.FC<ISubmitInput> = ({value, onClick}) => {
+
+    const handleSumbmit = (e: React.FormEvent<HTMLInputElement>) => {
+        console.log('ggood')
+        e.preventDefault();
+        onClick();
+    }
+
     return (
         <input
             type="submit"
             value={value}
+            onClick={handleSumbmit}
             className={'w-full h-14 bg-black text-white rounded-2xl cursor-pointer'}
         />
     );
