@@ -8,7 +8,12 @@ interface IEmailInput{
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const EmailInput: React.FC<IEmailInput> = ({label,id, readonly, value,onChange}) => {
+
+
+
+
+const EmailInput: React.FC<IEmailInput> = ({label,id, readonly, value, onChange  }) => {
+
     return (
         <div className={'flex flex-col w-full'}>
             <label
@@ -20,6 +25,7 @@ const EmailInput: React.FC<IEmailInput> = ({label,id, readonly, value,onChange})
             <input
                 readOnly={readonly}
                 type="email"
+                required
                 id={id}
                 onChange={onChange}
                 className={'border-black border-b-2 h-10 w-full'}

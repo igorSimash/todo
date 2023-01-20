@@ -15,7 +15,11 @@ export const router = createBrowserRouter([
         element: <RegistrationStart/>
     },
     {
-        path: '/registration/:email/:date/:token',
+        path: '/registration/start/:error/',
+        element: <RegistrationStart/>
+    },
+    {
+        path: '/registration/final/',
         element: <RegistrationFinal/>
     },
     {

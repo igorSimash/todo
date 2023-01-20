@@ -1,22 +1,41 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import LanguageSelect from "../select/LanguageSelect";
 import EmailInput from "../input/EmailInput";
 import SubmitInput from "../input/SubmitInput";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
+import SubmitError from "../errors/SubmitError";
 import axios from "axios";
+import {useTranslation} from "react-i18next";
 
-const RegistrationStart:React.FC = () => {
-
+const RegistrationStart: React.FC = () => {
     const [email, setEmail] = useState('');
     const [submitClicked, setSubmitClicked] = useState(false);
+    const [error, setError] = useState('');
+    const {t} = useTranslation(['regStart', 'error']);
+    const params = useParams();
 
+    useEffect(() => {
+        if (params.error) {
+            setError(params.error.toString())
+            setEmail(new URLSearchParams(document.location.search).get('email') as string)
+        }
+    }, [])
     const handleClick = () => {
-        axios.post(process.env.REACT_APP_API_REG_START as string, {email: email})
-        setSubmitClicked(true);
+        axios.post(process.env.REACT_APP_API_REG_START as string, {
+            email: email
+        })
+            .then(() => {
+                setSubmitClicked(true);
+                setError('');
+            })
+            .catch(err => {
+                console.log(err);
+                setError(err.response.status.toString());
+            })
     }
 
     if (submitClicked)
-        return <div></div>
+        return <div>Good job</div>
 
     return (
         <div className={'h-screen flex'}>
@@ -28,28 +47,34 @@ const RegistrationStart:React.FC = () => {
                     <LanguageSelect/>
                 </div>
                 <div className={'flex justify-center items-center flex-col h-full'}>
-                    <div className={'flex flex-col gap-14 w-80'}>
+                    <form className={'flex flex-col relative gap-14 w-80'}>
                         <div className={'flex flex-col gap-2'}>
                             <span className={'font-semibold text-3xl'}>
-                                Create a new account
+                                {t('title', {ns: 'regStart'})}
                             </span>
                             <span className={'font-light tracking-wide opacity-75'}>
-                                Let's get started
+                                {t('lightTitle', {ns: 'regStart'})}
                             </span>
                         </div>
                         <div className={'flex flex-col items-start gap-4'}>
-                            <EmailInput value={email} onChange={e => setEmail(e.target.value)} label={"Email"} id={'reg-email'}/>
+                            <EmailInput value={email} onChange={e => setEmail(e.target.value)} label={t('emailLabel', {ns: 'regStart'})}
+                                        id={'reg-email'}/>
+                            <SubmitError className={`${error.length > 0 && 'opacity-100'}`}>
+                                {t(error, {ns: 'error'})}
+                            </SubmitError>
                         </div>
+
                         <div>
                             <SubmitInput
                                 onClick={handleClick}
-                                value={"Send an email"}/>
+                                value={t('submit', {ns: 'regStart'})}/>
+
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end'}>
-                    <span className={'font-semibold'}>Already have an account?</span>
-                    <Link to={'/login'} className={'font-bold text-blue-600 text-lg'}>Sign in</Link>
+                    <span className={'font-semibold'}>{t('signInQues', {ns: 'regStart'})}</span>
+                    <Link to={'/login'} className={'font-bold text-blue-600 text-lg'}>{t('signInLink', {ns: 'regStart'})}</Link>
                 </div>
             </div>
         </div>

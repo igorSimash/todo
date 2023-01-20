@@ -1,15 +1,31 @@
-import React from 'react';
-import {Link, useParams} from "react-router-dom";
+import React, {useState} from 'react';
+import {Link, useLocation, useParams} from "react-router-dom";
 import EmailInput from "../input/EmailInput";
 import PasswordInput from "../input/PasswordInput";
-import SubmitInput from "../input/SubmitInput";
 import LanguageSelect from "../select/LanguageSelect";
 import {useTranslation} from "react-i18next";
+import SubmitInput from "../input/SubmitInput";
+import SubmitError from "../errors/SubmitError";
 
 
 const RegistrationFinal: React.FC = () => {
-    const {t} = useTranslation('reg');
-    const params = useParams()
+    const {t} = useTranslation(['regFinal', 'error']);
+    const [password, setPassword] = useState('');
+    const [repeatPassword, setRepeatPassword] = useState('');
+    const [error, setError] = useState('');
+    const email = new URLSearchParams(useLocation().search).get('email');
+
+    const handleClick = () => {
+        if (password.length < 8)
+            setError('passIsSmall');
+        else if (password !== repeatPassword)
+            setError('passNotMatch');
+        else {
+            setError('');
+            // axios.post('')
+        }
+    }
+
     return (
         <div className={'h-screen flex'}>
             <div className={'h-full w-5/12 bg-blue-400'}>
@@ -23,25 +39,28 @@ const RegistrationFinal: React.FC = () => {
                     <div className={'flex flex-col gap-14 w-80'}>
                         <div className={'flex flex-col gap-2'}>
                             <span className={'font-semibold text-3xl'}>
-                                {t('1', {ns: 'reg'})}
+                                {t('title', {ns: 'regFinal'})}
                             </span>
                             <span className={'font-light tracking-wide opacity-75'}>
-                                {t('2', {ns: 'reg'})}
+                                {t('lightTitle', {ns: 'regFinal'})}
                             </span>
                         </div>
                         <div className={'flex flex-col items-start gap-4'}>
-                            <EmailInput value={params.email} readonly={true} label={t('3', {ns: 'reg'})} id={'reg-email'}/>
-                            <PasswordInput label={t('4', {ns: 'reg'})} id={'reg-pass'}/>
-                            <PasswordInput label={t('5', {ns: 'reg'})} id={'reg-rep-pass'}/>
+                            <EmailInput value={email as string} readonly={true} label={t('emailLabel', {ns: 'regFinal'})} id={'reg-email'}/>
+                            <PasswordInput onChange={e => setPassword(e.target.value)} label={t('passLabel', {ns: 'regFinal'})} id={'reg-pass'}/>
+                            <PasswordInput onChange={e => setRepeatPassword(e.target.value)} label={t('repPassLabel', {ns: 'regFinal'})} id={'reg-rep-pass'}/>
+                            <SubmitError className={`${error.length > 0 && 'opacity-100'}`}>
+                                {t(error, {ns: 'error'})}
+                            </SubmitError>
                         </div>
                         <div>
-                            {/*<SubmitInput value={t('6', {ns: 'reg'})}/>*/}
+                            <SubmitInput onClick={handleClick} value={t('submit', {ns: 'regFinal'})}/>
                         </div>
                     </div>
                 </div>
                 <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end'}>
-                    <span className={'font-semibold'}>{t('7', {ns: 'reg'})}</span>
-                    <Link to={'/login'} className={'font-bold text-blue-600 text-lg'}>{t('8', {ns: 'reg'})}</Link>
+                    <span className={'font-semibold'}>{t('signInQues', {ns: 'regFinal'})}</span>
+                    <Link to={'/login'} className={'font-bold text-blue-600 text-lg'}>{t('signInLink', {ns: 'regFinal'})}</Link>
                 </div>
             </div>
         </div>
