@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
         element: <RegistrationStart/>
     },
     {
-        path: '/registration/final/',
+        path: '/registration/final/:token',
         element: <RegistrationFinal/>
     },
     {

@@ -6,6 +6,8 @@ import LanguageSelect from "../select/LanguageSelect";
 import {useTranslation} from "react-i18next";
 import SubmitInput from "../input/SubmitInput";
 import SubmitError from "../errors/SubmitError";
+import axios from "axios";
+import {useTypedSelector} from "../../hooks/useTypedSelect";
 
 
 const RegistrationFinal: React.FC = () => {
@@ -14,15 +16,28 @@ const RegistrationFinal: React.FC = () => {
     const [repeatPassword, setRepeatPassword] = useState('');
     const [error, setError] = useState('');
     const email = new URLSearchParams(useLocation().search).get('email');
-
+    const params = useParams();
+    const language = useTypedSelector(state => state.language.language)
     const handleClick = () => {
         if (password.length < 8)
             setError('passIsSmall');
         else if (password !== repeatPassword)
             setError('passNotMatch');
         else {
-            setError('');
-            // axios.post('')
+
+            axios.post(process.env.REACT_APP_API_REG_FINAL as string,
+                {
+                    email: email,
+                    password,
+                    token: params.token,
+                    language
+                })
+                .then(() => {
+                    setError('');
+                })
+                .catch(err => {
+                    setError(err.response.status.toString())
+                })
         }
     }
 
