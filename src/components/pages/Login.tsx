@@ -5,10 +5,29 @@ import SubmitInput from "../input/SubmitInput";
 import {Link} from "react-router-dom";
 import LanguageSelect from "../select/LanguageSelect";
 import {useTranslation} from "react-i18next";
+import axios from "axios";
+import SubmitError from "../errors/SubmitError";
 
 const Login = () => {
-    const {t} = useTranslation('login')
-    const [password, setPassword] = useState('')
+    const {t} = useTranslation(['login', 'error']);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('')
+
+    const handleClick = () => {
+        axios.post(process.env.REACT_APP_API_LOGIN as string, {
+            email,
+            password
+        })
+            .then(() => {
+                // setSubmitClicked(true);
+                setError('');
+            })
+            .catch(err => {
+                console.log(err);
+                setError(err.response.status.toString());
+            })
+    }
 
     return (
         <div className={'h-screen flex'}>
@@ -27,11 +46,14 @@ const Login = () => {
                             </span>
                         </div>
                         <div className={'flex flex-col items-start gap-4'}>
-                            <EmailInput label={t('emailLabel', {ns: 'login'})} id={'reg-email'}/>
+                            <EmailInput onChange={e => setEmail(e.target.value)} label={t('emailLabel', {ns: 'login'})} id={'reg-email'}/>
                             <PasswordInput onChange={e => setPassword(e.target.value)} label={t('passwordLabel', {ns: 'login'})} id={'reg-pass'}/>
+                            <SubmitError className={`${error.length > 0 && 'opacity-100'}`}>
+                                {t(error, {ns: 'error'})}
+                            </SubmitError>
                         </div>
                         <div>
-                            {/*<SubmitInput value={t('submit', {ns: 'login'})}/>*/}
+                            <SubmitInput onClick={handleClick} value={t('submit', {ns: 'login'})}/>
                         </div>
                     </div>
                 </div>

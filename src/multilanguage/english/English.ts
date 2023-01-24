@@ -33,6 +33,7 @@ export const English = {
     '409': 'Email is already registered',
     '410': 'The link has expired',
     'passNotMatch': 'Passwords do not match',
-    'passIsSmall': 'Password less than 8 characters'
+    'passIsSmall': 'Password less than 8 characters',
+    '401': 'Invalid Email or password'
   }
 }

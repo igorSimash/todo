@@ -1,4 +1,12 @@
 export const Ukrainian = {
+  main: {
+    title: '',
+    description: '',
+    startBtn: '',
+    header: {
+      logoDescription: '',
+    }
+  },
   registrationStart: {
     title: 'Створити акаунт',
     lightTitle: 'Давайте розпочнемо',
@@ -33,6 +41,7 @@ export const Ukrainian = {
     '409': 'Пошта вже зареєстрована',
     '410': 'Термін дії посилання закінчився',
     'passNotEqual': 'Паролі не співпадають',
-    'passIsSmall': 'Пароль менше 8 символів'
+    'passIsSmall': 'Пароль менше 8 символів',
+    '401': 'Невірна пошта або пароль'
   }
 }

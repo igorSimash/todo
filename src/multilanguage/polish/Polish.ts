@@ -33,6 +33,7 @@ export const Polish = {
         '409': 'E-mail jest już zarejestrowany',
         '410': 'Link wygasł',
         'passNotEqual': 'Hasła nie pasują do siebie',
-        'passIsSmall': 'Hasło krótsze niż 8 znaków'
+        'passIsSmall': 'Hasło krótsze niż 8 znaków',
+        '401': 'Nieprawidłowy e-mail lub hasło.'
     }
 }
