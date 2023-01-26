@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import EmailInput from "../input/EmailInput";
 import PasswordInput from "../input/PasswordInput";
 import SubmitInput from "../input/SubmitInput";
-import {Link} from "react-router-dom";
+import {Link, redirect, useNavigate} from "react-router-dom";
 import LanguageSelect from "../select/LanguageSelect";
 import {useTranslation} from "react-i18next";
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import SubmitError from "../errors/SubmitError";
 
 const Login = () => {
@@ -13,18 +13,32 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('')
+    const navigate = useNavigate();
+    const [submitClicked, setSubmitClicked] = useState(false)
+    useEffect(() => {
+        axios.get(
+            process.env.REACT_APP_API_LOGIN as string,
+            {
+                withCredentials: true
+                }
+            )
+            .then((res:AxiosResponse) => {
+                if (res.status === 200) {
+                    navigate("/todos");
+                }
+            })
+    }, [submitClicked])
 
     const handleClick = () => {
         axios.post(process.env.REACT_APP_API_LOGIN as string, {
             email,
             password
-        })
+        }, {withCredentials: true})
             .then(() => {
-                // setSubmitClicked(true);
+                setSubmitClicked(true);
                 setError('');
             })
             .catch(err => {
-                console.log(err);
                 setError(err.response.status.toString());
             })
     }
@@ -46,8 +60,10 @@ const Login = () => {
                             </span>
                         </div>
                         <div className={'flex flex-col items-start gap-4'}>
-                            <EmailInput onChange={e => setEmail(e.target.value)} label={t('emailLabel', {ns: 'login'})} id={'reg-email'}/>
-                            <PasswordInput onChange={e => setPassword(e.target.value)} label={t('passwordLabel', {ns: 'login'})} id={'reg-pass'}/>
+                            <EmailInput onChange={e => setEmail(e.target.value)} label={t('emailLabel', {ns: 'login'})}
+                                        id={'reg-email'}/>
+                            <PasswordInput onChange={e => setPassword(e.target.value)}
+                                           label={t('passwordLabel', {ns: 'login'})} id={'reg-pass'}/>
                             <SubmitError className={`${error.length > 0 && 'opacity-100'}`}>
                                 {t(error, {ns: 'error'})}
                             </SubmitError>
@@ -59,7 +75,8 @@ const Login = () => {
                 </div>
                 <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end'}>
                     <span className={'font-semibold'}>{t('signUpQues', {ns: 'login'})}</span>
-                    <Link to={'/registration/start'} className={'font-bold text-blue-600 text-lg'}>{t('signUpLink', {ns: 'login'})}</Link>
+                    <Link to={'/registration/start'}
+                          className={'font-bold text-blue-600 text-lg'}>{t('signUpLink', {ns: 'login'})}</Link>
                 </div>
             </div>
             <div className={'h-full w-7/12 bg-blue-400'}>
