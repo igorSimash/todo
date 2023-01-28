@@ -9,6 +9,8 @@ const resources = {
         regStart: English.registrationStart,
         regFinal: English.registrationFinal,
         login: English.login,
+        forgot_pass: English.forgot_pass,
+        forgot_pass_final: English.forgot_pass_final,
         error: English.errors
 
     },
@@ -16,12 +18,16 @@ const resources = {
         regStart: Ukrainian.registrationStart,
         regFinal: Ukrainian.registrationFinal,
         login: Ukrainian.login,
+        forgot_pass: Ukrainian.forgot_pass,
+        forgot_pass_final: Ukrainian.forgot_pass_final,
         error: Ukrainian.errors
     },
     pl: {
         regStart: Polish.registrationStart,
         regFinal: Polish.registrationFinal,
         login: Polish.login,
+        forgot_pass: Polish.forgot_pass,
+        forgot_pass_final: Polish.forgot_pass_final,
         error: Polish.errors
     }
 }
