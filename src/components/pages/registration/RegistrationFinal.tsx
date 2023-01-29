@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
-import {Link, useLocation, useParams} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
 import EmailInput from "../../input/EmailInput";
 import PasswordInput from "../../input/PasswordInput";
 import LanguageSelect from "../../select/LanguageSelect";
 import {useTranslation} from "react-i18next";
 import SubmitInput from "../../input/SubmitInput";
 import SubmitError from "../../errors/SubmitError";
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import {useTypedSelector} from "../../../hooks/useTypedSelect";
+import {Simulate} from "react-dom/test-utils";
 
 
 const RegistrationFinal: React.FC = () => {
@@ -15,9 +16,25 @@ const RegistrationFinal: React.FC = () => {
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
     const [error, setError] = useState('');
+    const [submitClicked, setSubmitClicked] = useState(false);
     const email = new URLSearchParams(useLocation().search).get('email');
     const params = useParams();
-    const language = useTypedSelector(state => state.language.language)
+    const language = useTypedSelector(state => state.language.language);
+    const navigate = useNavigate();
+    useEffect(() => {
+        axios.get(
+            process.env.REACT_APP_API_LOGIN as string,
+            {
+                withCredentials: true
+            }
+        )
+            .then((res:AxiosResponse) => {
+                if (res.status === 200) {
+                    navigate("/todos");
+                }
+            })
+    }, [submitClicked])
+
     const handleClick = () => {
         if (password.length < 8)
             setError('passIsSmall');
@@ -33,6 +50,7 @@ const RegistrationFinal: React.FC = () => {
                 })
                 .then(() => {
                     setError('');
+                    setSubmitClicked(true);
                 })
                 .catch(err => {
                     setError(err.response.status.toString())

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import EmailInput from "../input/EmailInput";
 import PasswordInput from "../input/PasswordInput";
 import SubmitInput from "../input/SubmitInput";
-import {Link, redirect, useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import LanguageSelect from "../select/LanguageSelect";
 import {useTranslation} from "react-i18next";
 import axios, {AxiosResponse} from "axios";
@@ -65,7 +65,9 @@ const Login = () => {
                             <PasswordInput onChange={e => setPassword(e.target.value)}
                                            label={t('passwordLabel', {ns: 'login'})} id={'reg-pass'}/>
                             <SubmitError className={`${error.length > 0 && 'opacity-100'}`}>
-                                {t(error, {ns: 'error'})}
+                                {
+                                    t(error, {ns: 'error'})
+                                }
                             </SubmitError>
                         </div>
                         <div>
@@ -73,6 +75,16 @@ const Login = () => {
                         </div>
                     </div>
                 </div>
+
+                {error === '401' &&
+                    <Link to={'/forgot-pass'}
+                          className={'absolute left-1/2 -translate-x-1/2 bottom-20 text-blue-600 text-md underline'}>
+                        Reset password
+                    </Link>
+                }
+
+
+
                 <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end'}>
                     <span className={'font-semibold'}>{t('signUpQues', {ns: 'login'})}</span>
                     <Link to={'/registration/start'}

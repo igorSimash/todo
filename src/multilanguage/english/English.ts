@@ -23,6 +23,7 @@ export const English = {
     emailLabel: "Email",
     passwordLabel: "Password",
     submit: "Sign in",
+    reset_pass: "Reset password",
     signUpQues: 'Do not have an account?',
     signUpLink: 'Sign up'
   },
