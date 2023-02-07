@@ -1,6 +1,6 @@
-import {ILanguageAction, ILanguageState} from "../../types/language";
+import {CHANGE_LANGUAGE, ILanguageAction, ILanguageState} from "../../types/language";
 
-const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
+
 
 const initialState:ILanguageState = {
     language: 'en'

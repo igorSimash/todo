@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import axios,{AxiosResponse} from "axios";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {getUserLanguage} from "../../redux/action-creators/getUserLanguage";
 
 const Todos:React.FC = () => {
-
-    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    useEffect(() => {
+        dispatch(getUserLanguage())
+    }, [])
 
     const handleLogout = () => {
         axios.get(process.env.REACT_APP_API_LOGOUT as string,

@@ -7,3 +7,4 @@ export interface ILanguageAction {
     payload: string;
 }
 
+export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
