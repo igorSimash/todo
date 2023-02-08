@@ -5,15 +5,15 @@ import {changeLanguageAction} from "../../redux/reducer/LanguageReducer";
 
 const languages:({ title: string; value: string })[] = [
     {
-        value: 'en',
+        value: 'en-US',
         title: "English"
     },
     {
-        value: 'ua',
+        value: 'uk-UA',
         title: "Ukrainian - Українська"
     },
     {
-        value: 'pl',
+        value: 'pl-PL',
         title: "Polish - Polski"
     }
 ]

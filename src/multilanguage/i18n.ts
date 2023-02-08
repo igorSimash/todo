@@ -5,7 +5,7 @@ import {Ukrainian} from "./ukrainian/Ukrainian"
 import {Polish} from "./polish/Polish"
 
 const resources = {
-    en: {
+    'en-US': {
         regStart: English.registrationStart,
         regFinal: English.registrationFinal,
         login: English.login,
@@ -14,7 +14,7 @@ const resources = {
         error: English.errors
 
     },
-    ua: {
+    'uk-UA': {
         regStart: Ukrainian.registrationStart,
         regFinal: Ukrainian.registrationFinal,
         login: Ukrainian.login,
@@ -22,7 +22,7 @@ const resources = {
         forgot_pass_final: Ukrainian.forgot_pass_final,
         error: Ukrainian.errors
     },
-    pl: {
+    'pl-PL': {
         regStart: Polish.registrationStart,
         regFinal: Polish.registrationFinal,
         login: Polish.login,
@@ -36,6 +36,6 @@ i18next
     .use(initReactI18next)
     .init({
         resources,
-        lng:"en", //default language
+        lng:"en-US", //default language
     });
 export default i18next;
