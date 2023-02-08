@@ -1,9 +1,9 @@
-import {CHANGE_LANGUAGE, ILanguageAction, ILanguageState} from "../../types/language";
+import {ILanguageAction, ILanguageState} from "../../types/language";
 
-
+const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
 
 const initialState:ILanguageState = {
-    language: 'en-US'
+    language: 'en'
 }
 
 export const languageReducer = (state = initialState, action:ILanguageAction): ILanguageState => {

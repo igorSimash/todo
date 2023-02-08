@@ -1,14 +1,22 @@
 import React, {useEffect} from 'react';
-import axios,{AxiosResponse} from "axios";
+import axios, {AxiosError, AxiosResponse} from "axios";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {getUserLanguage} from "../../redux/action-creators/getUserLanguage";
+import {changeLanguageAction} from "../../redux/reducer/LanguageReducer";
 
 const Todos:React.FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     useEffect(() => {
-        dispatch(getUserLanguage())
+        axios.get(process.env.REACT_APP_API_TODO as string, {withCredentials: true})
+            .then((res: AxiosResponse) => {
+                dispatch(changeLanguageAction(res.data.language))
+            })
+            .catch((err: AxiosError) => {
+                if (err.response?.status) {
+                    navigate('/login')
+                }
+            })
     }, [])
 
     const handleLogout = () => {
