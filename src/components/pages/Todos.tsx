@@ -7,6 +7,7 @@ import {changeLanguageAction} from "../../redux/reducer/LanguageReducer";
 const Todos:React.FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     useEffect(() => {
         axios.get(process.env.REACT_APP_API_TODO as string, {withCredentials: true})
             .then((res: AxiosResponse) => {
@@ -17,7 +18,7 @@ const Todos:React.FC = () => {
                     navigate('/login')
                 }
             })
-    }, [])
+    }, []);
 
     const handleLogout = () => {
         axios.get(process.env.REACT_APP_API_LOGOUT as string,
@@ -29,7 +30,7 @@ const Todos:React.FC = () => {
                     navigate("/login");
                 }
             })
-    }
+    };
 
     return (
         <div>

@@ -9,23 +9,22 @@ import axios from "axios";
 
 const ForgotPass: React.FC = () => {
     const [email, setEmail] = useState('');
-    const [submitClicked, setSubmitClicked] = useState(false);
     const [error, setError] = useState('');
     const {t} = useTranslation(['forgot_pass', 'error']);
-    const params = useParams()
+    const params = useParams();
+
     useEffect(() => {
         if (params.error){
             setError(params.error);
             setEmail(new URLSearchParams(document.location.search).get('email') as string);
         }
-    }, [])
+    }, [params.error]);
 
     const handleClick = () => {
         axios.post(process.env.REACT_APP_API_FORGOT_PASS as string, {
             email
         })
-            .then(res => {
-                setSubmitClicked(true);
+            .then(() => {
                 setError('');
             })
             .catch(err => {

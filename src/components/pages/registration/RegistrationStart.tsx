@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import LanguageSelect from "../../select/LanguageSelect";
 import EmailInput from "../../input/EmailInput";
 import SubmitInput from "../../input/SubmitInput";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import SubmitError from "../../errors/SubmitError";
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
 import {useTranslation} from "react-i18next";
 
 const RegistrationStart: React.FC = () => {
@@ -13,26 +13,14 @@ const RegistrationStart: React.FC = () => {
     const [error, setError] = useState('');
     const {t} = useTranslation(['regStart', 'error']);
     const params = useParams();
-    const navigate = useNavigate();
-    useEffect(() => {
-        axios.get(
-            process.env.REACT_APP_API_LOGIN as string,
-            {
-                withCredentials: true
-            }
-        )
-            .then((res:AxiosResponse) => {
-                if (res.status === 200) {
-                    navigate("/todos");
-                    return;
-                }
-            })
 
+    useEffect(() => {
         if (params.error) {
             setError(params.error.toString())
             setEmail(new URLSearchParams(document.location.search).get('email') as string)
         }
-    }, [])
+    }, [params.error]);
+    
     const handleClick = () => {
         axios.post(process.env.REACT_APP_API_REG_START as string, {
             email: email

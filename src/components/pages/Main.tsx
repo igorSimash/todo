@@ -1,23 +1,7 @@
-import React, {useEffect} from 'react';
-import {Link, useNavigate} from "react-router-dom";
-import axios, {AxiosResponse} from "axios";
+import React from 'react';
+import {Link} from "react-router-dom";
 
 const Main = () => {
-    const navigate = useNavigate();
-    useEffect(() => {
-        axios.get(
-            process.env.REACT_APP_API_LOGIN as string,
-            {
-                withCredentials: true
-            }
-        )
-            .then((res:AxiosResponse) => {
-                if (res.status === 200) {
-                    navigate("/todos");
-                }
-            })
-    }, [])
-
     return (
         <div className={'w-screen h-screen px-10'}>
             <header className={'w-full h-16 flex justify-between'}>

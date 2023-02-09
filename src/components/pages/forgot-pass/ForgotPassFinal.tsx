@@ -3,7 +3,7 @@ import LanguageSelect from "../../select/LanguageSelect";
 import PasswordInput from "../../input/PasswordInput";
 import SubmitError from "../../errors/SubmitError";
 import SubmitInput from "../../input/SubmitInput";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import axios from "axios";
 
@@ -13,7 +13,7 @@ const ForgotPassFinal: React.FC = () => {
     const [repeatPassword, setRepeatPassword] = useState('');
     const [error, setError] = useState('');
     const params = useParams();
-
+    const navigate = useNavigate();
     const handleClick = () => {
         if (password.length < 8)
             setError('passIsSmall');
@@ -24,6 +24,9 @@ const ForgotPassFinal: React.FC = () => {
                 {
                     token: params.token,
                     password,
+                })
+                .then(() => {
+                    navigate('/login')
                 })
         }
 

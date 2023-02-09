@@ -1,42 +1,27 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import EmailInput from "../input/EmailInput";
 import PasswordInput from "../input/PasswordInput";
 import SubmitInput from "../input/SubmitInput";
 import {Link, useNavigate} from "react-router-dom";
 import LanguageSelect from "../select/LanguageSelect";
 import {useTranslation} from "react-i18next";
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
 import SubmitError from "../errors/SubmitError";
 
 const Login = () => {
     const {t} = useTranslation(['login', 'error']);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('')
+    const [error, setError] = useState('');
     const navigate = useNavigate();
-    const [submitClicked, setSubmitClicked] = useState(false)
-    useEffect(() => {
-        axios.get(
-            process.env.REACT_APP_API_LOGIN as string,
-            {
-                withCredentials: true
-                }
-            )
-            .then((res:AxiosResponse) => {
-                if (res.status === 200) {
-                    navigate("/todos");
-                }
-            })
-    }, [submitClicked])
-
     const handleClick = () => {
         axios.post(process.env.REACT_APP_API_LOGIN as string, {
             email,
             password
         }, {withCredentials: true})
             .then(() => {
-                setSubmitClicked(true);
                 setError('');
+                navigate('./todos')
             })
             .catch(err => {
                 setError(err.response.status.toString());
@@ -82,8 +67,6 @@ const Login = () => {
                         Reset password
                     </Link>
                 }
-
-
 
                 <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end'}>
                     <span className={'font-semibold'}>{t('signUpQues', {ns: 'login'})}</span>
