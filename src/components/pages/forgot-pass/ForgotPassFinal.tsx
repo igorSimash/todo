@@ -3,7 +3,7 @@ import LanguageSelect from "../../select/LanguageSelect";
 import PasswordInput from "../../input/PasswordInput";
 import SubmitError from "../../errors/SubmitError";
 import SubmitInput from "../../input/SubmitInput";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import axios from "axios";
 
@@ -12,6 +12,7 @@ const ForgotPassFinal: React.FC = () => {
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
     const [error, setError] = useState('');
+    const email = new URLSearchParams(useLocation().search).get('email');
     const params = useParams();
     const navigate = useNavigate();
     const handleClick = () => {
@@ -22,11 +23,15 @@ const ForgotPassFinal: React.FC = () => {
         else {
             axios.post(process.env.REACT_APP_API_FORGOT_PASS_FINAL as string,
                 {
+                    email,
                     token: params.token,
                     password,
                 })
                 .then(() => {
                     navigate('/login')
+                })
+                .catch(err => {
+                    setError(err.response.data.message);
                 })
         }
 

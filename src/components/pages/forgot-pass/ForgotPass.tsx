@@ -10,25 +10,26 @@ import axios from "axios";
 const ForgotPass: React.FC = () => {
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
-    const {t} = useTranslation(['forgot_pass', 'error']);
+    const {t, i18n} = useTranslation(['forgot_pass', 'error']);
     const params = useParams();
 
     useEffect(() => {
-        if (params.error){
-            setError(params.error);
+        if (params.error && params.error === '410'){
+            setError('The link has expired');
             setEmail(new URLSearchParams(document.location.search).get('email') as string);
         }
     }, [params.error]);
 
     const handleClick = () => {
         axios.post(process.env.REACT_APP_API_FORGOT_PASS as string, {
-            email
+            email,
+            language: i18n.language
         })
             .then(() => {
                 setError('');
             })
             .catch(err => {
-                setError(err.response.status.toString());
+                setError(err.response.data.message);
             })
     }
 

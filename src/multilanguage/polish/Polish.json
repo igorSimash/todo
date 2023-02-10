@@ -1,0 +1,58 @@
+{
+  "registrationStart": {
+    "title": "Stwórz nowe konto",
+    "lightTitle": "Zacznijmy",
+    "emailLabel": "E-mail",
+    "submit": "Wyślij e-mail",
+    "signInQues": "Posiadasz już konto?",
+    "signInLink": "Zaloguj się"
+  },
+  "registrationFinal": {
+    "title": "Utwórz konto",
+    "lightTitle": "Zacznijmy",
+    "emailLabel": "E-mail",
+    "passLabel": "Hasło",
+    "repPassLabel": "Powtórz hasło",
+    "submit": "Utwórz konto",
+    "signInQues": "Posiadasz już konto?",
+    "signInLink": "Zaloguj się"
+  },
+  "login": {
+    "title": "Zaloguj się",
+    "lightTitle": "Kontynuujmy",
+    "emailLabel": "E-mail",
+    "passwordLabel": "Hasło",
+    "submit": "Zaloguj się",
+    "signUpQues": "Nie masz konta?",
+    "signUpLink": "Zapisz się",
+    "resetPassword": "Zresetuj hasło"
+  },
+  "forgot_pass": {
+    "title": "Nie pamiętasz hasła?",
+    "lightTitle": "Wpisz swój email",
+    "emailLabel": "E-mail",
+    "submit": "Wyślij e-mail",
+    "signInQues": "Pamiętasz hasło?",
+    "signInLink": "Zaloguj się"
+  },
+  "forgot_pass_final": {
+    "title": "Zmień hasło",
+    "lightTitle": "Wpisz nowe hasło",
+    "passLabel": "Hasło",
+    "repPassLabel": "Powtórz hasło",
+    "submit": "Zmień hasło",
+    "signInQues": "Pamiętasz hasło?",
+    "signInLink": "Zaloguj się"
+  },
+  "errors": {
+    "Invalid token": "Nieprawidłowy token",
+    "Failed to send the email": "Nie udało się wysłać e-mail",
+    "Email is invalid": "E-mail jest nie prawidłowy",
+    "User not found": "Użytkownik nie znaleziony",
+    "Email is already registered": "E-mail jest już zarejestrowany",
+    "The link has expired": "Link wygasł",
+    "passNotMatch": "Hasła nie pasują do siebie",
+    "passIsSmall": "Hasło krótsze niż 8 znaków",
+    "Invalid password": "Nieprawidłowy hasło."
+  }
+}

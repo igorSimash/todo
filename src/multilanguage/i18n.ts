@@ -1,8 +1,8 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import {English} from "./english/English";
-import {Ukrainian} from "./ukrainian/Ukrainian"
-import {Polish} from "./polish/Polish"
+import English from "./english/English.json";
+import Ukrainian from "./ukrainian/Ukrainian.json"
+import Polish from "./polish/Polish.json"
 
 const resources = {
     'en-US': {
@@ -12,7 +12,6 @@ const resources = {
         forgot_pass: English.forgot_pass,
         forgot_pass_final: English.forgot_pass_final,
         error: English.errors
-
     },
     'uk-UA': {
         regStart: Ukrainian.registrationStart,
@@ -36,6 +35,7 @@ i18next
     .use(initReactI18next)
     .init({
         resources,
-        lng:"en-US", //default language
+        lng: "en-US", //default language
     });
+
 export default i18next;

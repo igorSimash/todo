@@ -14,6 +14,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+
     const handleClick = () => {
         axios.post(process.env.REACT_APP_API_LOGIN as string, {
             email,
@@ -21,10 +22,10 @@ const Login = () => {
         }, {withCredentials: true})
             .then(() => {
                 setError('');
-                navigate('./todos')
+                navigate('/todos')
             })
             .catch(err => {
-                setError(err.response.status.toString());
+                setError(err.response.data.message);
             })
     }
 
@@ -61,10 +62,10 @@ const Login = () => {
                     </div>
                 </div>
 
-                {error === '401' &&
+                {error === 'Invalid password' &&
                     <Link to={'/forgot-pass'}
                           className={'absolute left-1/2 -translate-x-1/2 bottom-20 text-blue-600 text-md underline'}>
-                        Reset password
+                        {t('resetPassword', {ns: 'login'})}
                     </Link>
                 }
 

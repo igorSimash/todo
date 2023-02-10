@@ -1,0 +1,66 @@
+{
+  "main": {
+    "title": "",
+    "description": "",
+    "startBtn": "",
+    "header": {
+      "logoDescription": ""
+    }
+  },
+  "registrationStart": {
+    "title": "Створити акаунт",
+    "lightTitle": "Давайте розпочнемо",
+    "emailLabel": "Електронна пошта",
+    "submit": "Вислати лист",
+    "signInQues": "Вже є акаунт?",
+    "signInLink": "Увійти"
+  },
+  "registrationFinal": {
+    "title": "Створити акаунт",
+    "lightTitle": "Давайте розпочнемо",
+    "emailLabel": "Електронна пошта",
+    "passLabel": "Пароль",
+    "repPassLabel": "Повторіть пароль",
+    "submit": "Створити акаунт",
+    "signInQues": "Вже є акаунт?",
+    "signInLink": "Увійти"
+  },
+  "login": {
+    "title": "Ввійти у свій акаунт",
+    "lightTitle": "Давайте продовжимо",
+    "emailLabel": "Електронна пошта",
+    "passwordLabel": "Пароль",
+    "submit": "Ввійти",
+    "signUpQues": "Немає акаунта?",
+    "signUpLink": "Зареєструватися",
+    "resetPassword": "Cкинути пароль"
+  },
+  "forgot_pass": {
+    "title": "Забули пароль?",
+    "lightTitle": "Введіть пошту",
+    "emailLabel": "Пошта",
+    "submit": "Надіслати лист",
+    "signInQues": "Пам'ятаєте свій пароль?",
+    "signInLink": "Увійти"
+  },
+  "forgot_pass_final": {
+    "title": "Змінити пароль",
+    "lightTitle": "Введіть новий пароль",
+    "passLabel": "Пароль",
+    "repPassLabel": "Повторіть пароль",
+    "submit": "Змінити пароль",
+    "signInQues": "Пам'ятаєте свій пароль?",
+    "signInLink": "Увійти"
+  },
+  "errors": {
+    "Invalid token": "Недійсний токен",
+    "Failed to send the email": "Не вдалося надіслати лист",
+    "Email is invalid": "Пошта недійсна",
+    "User not found": "Користувача не знайдено",
+    "Email is already registered": "Пошта вже зареєстрована",
+    "The link has expired": "Термін дії посилання закінчився",
+    "passNotMatch": "Паролі не співпадають",
+    "passIsSmall": "Пароль менше 8 символів",
+    "Invalid password": "Невірний пароль"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "registrationStart": {
+    "title": "Create an account",
+    "lightTitle": "Let's get started",
+    "emailLabel": "Email",
+    "submit": "Send an email",
+    "signInQues": "Already have an account?",
+    "signInLink": "Sign in"
+  },
+  "registrationFinal": {
+    "title": "Create an account",
+    "lightTitle": "Let's get started",
+    "emailLabel": "Email",
+    "passLabel": "Password",
+    "repPassLabel": "Repeat password",
+    "submit": "Create account",
+    "signInQues": "Already have an account?",
+    "signInLink": "Sign in"
+  },
+  "login": {
+    "title": "Sign in to your account",
+    "lightTitle": "Let's continue",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "submit": "Sign in",
+    "reset_pass": "Reset password",
+    "signUpQues": "Do not have an account?",
+    "signUpLink": "Sign up",
+    "resetPassword": "Reset password"
+  },
+  "forgot_pass": {
+    "title": "Forgot password?",
+    "lightTitle": "Enter your email",
+    "emailLabel": "Email",
+    "submit": "Send an email",
+    "signInQues": "Remember your password?",
+    "signInLink": "Sign in"
+  },
+  "forgot_pass_final": {
+    "title": "Change password",
+    "lightTitle": "Enter a new password",
+    "passLabel": "Password",
+    "repPassLabel": "Repeat password",
+    "submit": "Change password",
+    "signInQues": "Remember your password?",
+    "signInLink": "Sign in"
+  },
+  "errors": {
+    "Invalid token": "Invalid token",
+    "Failed to send the email": "Failed to send the email",
+    "Email is invalid": "Email is invalid",
+    "User not found": "User not found",
+    "Email is already registered": "Email is already registered",
+    "The link has expired": "The link has expired",
+    "passNotMatch": "Passwords do not match",
+    "passIsSmall": "Password less than 8 characters",
+    "Invalid password": "Invalid password"
+  }
+
+}

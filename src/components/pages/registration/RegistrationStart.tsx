@@ -4,34 +4,34 @@ import EmailInput from "../../input/EmailInput";
 import SubmitInput from "../../input/SubmitInput";
 import {Link, useParams} from "react-router-dom";
 import SubmitError from "../../errors/SubmitError";
-import axios from "axios";
+import axios, {AxiosError} from "axios";
 import {useTranslation} from "react-i18next";
 
 const RegistrationStart: React.FC = () => {
     const [email, setEmail] = useState('');
     const [submitClicked, setSubmitClicked] = useState(false);
     const [error, setError] = useState('');
-    const {t} = useTranslation(['regStart', 'error']);
+    const {t, i18n} = useTranslation(['regStart', 'error']);
     const params = useParams();
-
     useEffect(() => {
-        if (params.error) {
-            setError(params.error.toString())
-            setEmail(new URLSearchParams(document.location.search).get('email') as string)
+        if (params.error && params.error === '410') {
+            setError('The link has expired');
+            setEmail(new URLSearchParams(document.location.search).get('email') as string);
         }
     }, [params.error]);
     
     const handleClick = () => {
         axios.post(process.env.REACT_APP_API_REG_START as string, {
-            email: email
+            email,
+            language: i18n.language
         })
             .then(() => {
                 setSubmitClicked(true);
                 setError('');
             })
-            .catch(err => {
-                setError(err.response.status.toString());
-            })
+            .catch((err) => {
+                setError(err.response.data.message);
+            });
     }
 
     if (submitClicked)

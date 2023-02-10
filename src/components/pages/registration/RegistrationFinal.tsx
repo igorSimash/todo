@@ -7,16 +7,14 @@ import {useTranslation} from "react-i18next";
 import SubmitInput from "../../input/SubmitInput";
 import SubmitError from "../../errors/SubmitError";
 import axios from "axios";
-import {useTypedSelector} from "../../../hooks/useTypedSelect";
 
 const RegistrationFinal: React.FC = () => {
-    const {t} = useTranslation(['regFinal', 'error']);
+    const {t, i18n} = useTranslation(['regFinal', 'error']);
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
     const [error, setError] = useState('');
     const email = new URLSearchParams(useLocation().search).get('email');
     const params = useParams();
-    const language = useTypedSelector(state => state.language.language);
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -27,17 +25,17 @@ const RegistrationFinal: React.FC = () => {
         else {
             axios.post(process.env.REACT_APP_API_REG_FINAL as string,
                 {
-                    email: email,
+                    email,
                     password,
                     token: params.token,
-                    language
+                    language: i18n.language
                 })
                 .then(() => {
                     setError('');
                     navigate('/todos');
                 })
                 .catch(err => {
-                    setError(err.response.status.toString())
+                    setError(err.response.data.message);
                 })
         }
     }
