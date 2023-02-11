@@ -23,9 +23,7 @@ const ForgotPassFinal: React.FC = () => {
         dispatch(changeLanguageAction(currUrl.get('language') as string));
     }, [])
     const handleClick = () => {
-        if (password.length < 8)
-            setError('passIsSmall');
-        else if (password !== repeatPassword)
+        if (password !== repeatPassword)
             setError('passNotMatch');
         else {
             axios.post(process.env.REACT_APP_API_FORGOT_PASS_FINAL as string,

@@ -60,7 +60,7 @@
     "Email is already registered": "Пошта вже зареєстрована",
     "The link has expired": "Термін дії посилання закінчився",
     "passNotMatch": "Паролі не співпадають",
-    "passIsSmall": "Пароль менше 8 символів",
-    "Invalid password": "Невірний пароль"
+    "Invalid password": "Невірний пароль",
+    "Password is weak": "Пароль слабкий"
   }
 }

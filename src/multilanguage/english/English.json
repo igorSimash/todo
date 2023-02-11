@@ -53,8 +53,7 @@
     "Email is already registered": "Email is already registered",
     "The link has expired": "The link has expired",
     "passNotMatch": "Passwords do not match",
-    "passIsSmall": "Password less than 8 characters",
-    "Invalid password": "Invalid password"
+    "Invalid password": "Invalid password",
+    "Password is weak": "Password is weak"
   }
-
 }

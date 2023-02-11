@@ -25,9 +25,7 @@ const RegistrationFinal: React.FC = () => {
     }, [])
 
     const handleClick = () => {
-        if (password.length < 8)
-            setError('passIsSmall');
-        else if (password !== repeatPassword)
+        if (password !== repeatPassword)
             setError('passNotMatch');
         else {
             axios.post(process.env.REACT_APP_API_REG_FINAL as string,

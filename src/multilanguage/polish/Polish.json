@@ -52,7 +52,7 @@
     "Email is already registered": "E-mail jest już zarejestrowany",
     "The link has expired": "Link wygasł",
     "passNotMatch": "Hasła nie pasują do siebie",
-    "passIsSmall": "Hasło krótsze niż 8 znaków",
-    "Invalid password": "Nieprawidłowy hasło."
+    "Invalid password": "Nieprawidłowy hasło",
+    "Password is weak": "Hasło jest słabe"
   }
 }
