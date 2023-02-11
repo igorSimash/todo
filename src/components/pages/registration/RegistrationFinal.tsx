@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
 import EmailInput from "../../input/EmailInput";
 import PasswordInput from "../../input/PasswordInput";
@@ -7,15 +7,22 @@ import {useTranslation} from "react-i18next";
 import SubmitInput from "../../input/SubmitInput";
 import SubmitError from "../../errors/SubmitError";
 import axios from "axios";
+import {useDispatch} from "react-redux";
+import {changeLanguageAction} from "../../../redux/reducer/LanguageReducer";
 
 const RegistrationFinal: React.FC = () => {
     const {t, i18n} = useTranslation(['regFinal', 'error']);
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
     const [error, setError] = useState('');
-    const email = new URLSearchParams(useLocation().search).get('email');
+    const currUrl = new URLSearchParams(useLocation().search);
+    const email = currUrl.get('email');
     const params = useParams();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(changeLanguageAction(currUrl.get('language') as string));
+    }, [])
 
     const handleClick = () => {
         if (password.length < 8)

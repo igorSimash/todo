@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import LanguageSelect from "../../select/LanguageSelect";
 import PasswordInput from "../../input/PasswordInput";
 import SubmitError from "../../errors/SubmitError";
@@ -6,15 +6,22 @@ import SubmitInput from "../../input/SubmitInput";
 import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import axios from "axios";
+import {changeLanguageAction} from "../../../redux/reducer/LanguageReducer";
+import {useDispatch} from "react-redux";
 
 const ForgotPassFinal: React.FC = () => {
     const {t} = useTranslation(['forgot_pass_final', 'error']);
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
     const [error, setError] = useState('');
-    const email = new URLSearchParams(useLocation().search).get('email');
-    const params = useParams();
+    const currUrl = new URLSearchParams(useLocation().search);
+    const email = currUrl.get('email');
     const navigate = useNavigate();
+    const params = useParams();
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(changeLanguageAction(currUrl.get('language') as string));
+    }, [])
     const handleClick = () => {
         if (password.length < 8)
             setError('passIsSmall');
@@ -28,6 +35,7 @@ const ForgotPassFinal: React.FC = () => {
                     password,
                 })
                 .then(() => {
+                    setError('');
                     navigate('/login')
                 })
                 .catch(err => {
