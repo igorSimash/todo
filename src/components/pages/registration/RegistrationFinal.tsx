@@ -6,7 +6,6 @@ import LanguageSelect from "../../select/LanguageSelect";
 import {useTranslation} from "react-i18next";
 import SubmitInput from "../../input/SubmitInput";
 import SubmitError from "../../errors/SubmitError";
-import axios from "axios";
 import {useDispatch} from "react-redux";
 import {changeLanguageAction} from "../../../redux/reducer/LanguageReducer";
 
@@ -28,20 +27,30 @@ const RegistrationFinal: React.FC = () => {
         if (password !== repeatPassword)
             setError('passNotMatch');
         else {
-            axios.post(process.env.REACT_APP_API_REG_FINAL as string,
+            const body = JSON.stringify({
+                email,
+                password,
+                token: params.token,
+                language: i18n.language
+            });
+            fetch(process.env.REACT_APP_API_REG_FINAL as string,
                 {
-                    email,
-                    password,
-                    token: params.token,
-                    language: i18n.language
+                    mode: 'cors',
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body
+                })
+                .then(async (res: Response) => {
+                    if (!res.ok)
+                        return Promise.reject((await res.json()).message);
                 })
                 .then(() => {
                     setError('');
-                    navigate('/todos');
+                    navigate('/login');
                 })
-                .catch(err => {
-                    setError(err.response.data.message);
-                })
+                .catch((err: string) => {
+                    setError(err);
+                });
         }
     }
 

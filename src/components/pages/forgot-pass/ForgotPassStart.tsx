@@ -5,9 +5,8 @@ import SubmitError from "../../errors/SubmitError";
 import SubmitInput from "../../input/SubmitInput";
 import {Link, useParams} from "react-router-dom";
 import {useTranslation} from "react-i18next";
-import axios from "axios";
 
-const ForgotPass: React.FC = () => {
+const ForgotPassStart: React.FC = () => {
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
     const {t, i18n} = useTranslation(['forgot_pass', 'error']);
@@ -21,16 +20,26 @@ const ForgotPass: React.FC = () => {
     }, [params.error]);
 
     const handleClick = () => {
-        axios.post(process.env.REACT_APP_API_FORGOT_PASS as string, {
+        const body = JSON.stringify({
             email,
             language: i18n.language
-        })
+        });
+
+        fetch(process.env.REACT_APP_API_FORGOT_PASS as string,
+            {
+                mode: 'cors',
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body
+            })
+            .then(async (res: Response) => {
+                if (!res.ok)
+                    return Promise.reject((await res.json()).message)
+            })
             .then(() => {
                 setError('');
             })
-            .catch(err => {
-                setError(err.response.data.message);
-            })
+            .catch((err: string) => setError(err));
     }
 
     return (
@@ -77,4 +86,4 @@ const ForgotPass: React.FC = () => {
     );
 };
 
-export default ForgotPass;
+export default ForgotPassStart;

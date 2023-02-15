@@ -4,7 +4,6 @@ import EmailInput from "../../input/EmailInput";
 import SubmitInput from "../../input/SubmitInput";
 import {Link, useParams} from "react-router-dom";
 import SubmitError from "../../errors/SubmitError";
-import axios, {AxiosError} from "axios";
 import {useTranslation} from "react-i18next";
 
 const RegistrationStart: React.FC = () => {
@@ -21,17 +20,27 @@ const RegistrationStart: React.FC = () => {
     }, [params.error]);
     
     const handleClick = () => {
-        axios.post(process.env.REACT_APP_API_REG_START as string, {
+        const body = JSON.stringify({
             email,
             language: i18n.language
-        })
+        });
+
+        fetch(process.env.REACT_APP_API_REG_START as string,
+            {
+                mode: 'cors',
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body
+            })
+            .then(async (res: Response) => {
+                if (!res.ok)
+                    return Promise.reject((await res.json()).message)
+            })
             .then(() => {
                 setSubmitClicked(true);
                 setError('');
             })
-            .catch((err) => {
-                setError(err.response.data.message);
-            });
+            .catch((err: string) => setError(err));
     }
 
     if (submitClicked)

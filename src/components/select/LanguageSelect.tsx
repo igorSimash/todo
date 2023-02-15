@@ -17,7 +17,7 @@ const languages:({ title: string; value: string })[] = [
         value: 'pl-PL',
         title: "Polish - Polski"
     }
-]
+];
 
 const LanguageSelect: React.FC = () => {
     const dispatch = useDispatch();

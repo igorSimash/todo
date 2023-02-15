@@ -5,7 +5,6 @@ import SubmitInput from "../input/SubmitInput";
 import {Link, useNavigate} from "react-router-dom";
 import LanguageSelect from "../select/LanguageSelect";
 import {useTranslation} from "react-i18next";
-import axios from "axios";
 import SubmitError from "../errors/SubmitError";
 
 const Login = () => {
@@ -16,17 +15,30 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        axios.post(process.env.REACT_APP_API_LOGIN as string, {
+        const body = JSON.stringify({
             email,
             password
-        }, {withCredentials: true})
+        });
+
+        fetch(process.env.REACT_APP_API_LOGIN as string,
+           {
+               credentials: 'include',
+               mode: 'cors',
+               method: 'POST',
+               headers: { 'Content-Type': 'application/json' },
+               body
+           })
+            .then(async (res: Response) => {
+                if (!res.ok)
+                    return Promise.reject((await res.json()).message);
+            })
             .then(() => {
                 setError('');
-                navigate('/todos')
+                navigate('/todos');
             })
-            .catch(err => {
-                setError(err.response.data.message);
-            })
+            .catch((err: string) => {
+                setError(err);
+            });
     }
 
     return (
