@@ -1,26 +1,26 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import {Provider} from "react-redux";
-import {store} from "./redux/store";
 import {useNavigate} from "react-router-dom";
+import useSWR from 'swr'
+import LoaderFullScreen from "./components/UI/loader/LoaderFullScreen";
+import {store} from "./redux/store";
+import {Provider} from "react-redux";
 import Router from "./router/Router";
 
 function App() {
     const navigate = useNavigate();
 
-    useEffect(() => {
-            fetch(process.env.REACT_APP_API_LOGIN as string,
-                {
-                    credentials: 'include'
-                })
-                .then((res: Response) => {
-                    if (res.status === 200) {
-                        navigate('/todos');
-                        return;
-                    }
-                });
-        }, []);
+    const {
+        data,
+        isLoading
+    } = useSWR(process.env.REACT_APP_API_LOGIN as string, (...args) => fetch(...args, {credentials: 'include'}));
 
+    useEffect(() => {
+        if (data?.status === 200)
+            navigate('/todos');
+    }, [isLoading]);
+
+    if (isLoading) return <LoaderFullScreen/>;
     return (
         <Provider store={store}>
             <div className="App">
