@@ -45,6 +45,11 @@
     "signInQues": "Remember your password?",
     "signInLink": "Sign in"
   },
+  "after_submit": {
+    "title": "Please, check your email.",
+    "description": "You can verify your email there and continue working with TodoIg!",
+    "linkToMain": "Go back to the main page"
+  },
   "errors": {
     "Invalid token": "Invalid token",
     "Failed to send the email": "Failed to send the email",

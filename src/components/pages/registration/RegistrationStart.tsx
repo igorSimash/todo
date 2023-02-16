@@ -5,6 +5,7 @@ import SubmitInput from "../../input/SubmitInput";
 import {Link, useParams} from "react-router-dom";
 import SubmitError from "../../errors/SubmitError";
 import {useTranslation} from "react-i18next";
+import AfterSubmitEmail from "../../UI/after-submit/AfterSubmitEmail";
 
 const RegistrationStart: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -18,7 +19,7 @@ const RegistrationStart: React.FC = () => {
             setEmail(new URLSearchParams(document.location.search).get('email') as string);
         }
     }, [params.error]);
-    
+
     const handleClick = () => {
         const body = JSON.stringify({
             email,
@@ -29,7 +30,7 @@ const RegistrationStart: React.FC = () => {
             {
                 mode: 'cors',
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {'Content-Type': 'application/json'},
                 body
             })
             .then(async (res: Response) => {
@@ -44,7 +45,7 @@ const RegistrationStart: React.FC = () => {
     }
 
     if (submitClicked)
-        return <div>Good job</div>
+        return <AfterSubmitEmail/>
 
     return (
         <div className={'h-screen flex'}>
@@ -66,7 +67,8 @@ const RegistrationStart: React.FC = () => {
                             </span>
                         </div>
                         <div className={'flex flex-col items-start gap-4'}>
-                            <EmailInput value={email} onChange={e => setEmail(e.target.value)} label={t('emailLabel', {ns: 'regStart'})}
+                            <EmailInput value={email} onChange={e => setEmail(e.target.value)}
+                                        label={t('emailLabel', {ns: 'regStart'})}
                                         id={'reg-email'}/>
                             <SubmitError className={`${error.length > 0 && 'opacity-100'}`}>
                                 {t(error, {ns: 'error'})}
@@ -83,11 +85,11 @@ const RegistrationStart: React.FC = () => {
                 </div>
                 <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end'}>
                     <span className={'font-semibold'}>{t('signInQues', {ns: 'regStart'})}</span>
-                    <Link to={'/login'} className={'font-bold text-blue-600 text-lg'}>{t('signInLink', {ns: 'regStart'})}</Link>
+                    <Link to={'/login'}
+                          className={'font-bold text-blue-600 text-lg'}>{t('signInLink', {ns: 'regStart'})}</Link>
                 </div>
             </div>
         </div>
     );
 };
-
 export default RegistrationStart;

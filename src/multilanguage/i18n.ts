@@ -11,6 +11,7 @@ const resources = {
         login: English.login,
         forgot_pass: English.forgot_pass,
         forgot_pass_final: English.forgot_pass_final,
+        afterSubmit: English.after_submit,
         error: English.errors
     },
     'uk-UA': {
@@ -19,6 +20,7 @@ const resources = {
         login: Ukrainian.login,
         forgot_pass: Ukrainian.forgot_pass,
         forgot_pass_final: Ukrainian.forgot_pass_final,
+        afterSubmit: Ukrainian.after_submit,
         error: Ukrainian.errors
     },
     'pl-PL': {
@@ -27,6 +29,7 @@ const resources = {
         login: Polish.login,
         forgot_pass: Polish.forgot_pass,
         forgot_pass_final: Polish.forgot_pass_final,
+        afterSubmit: Polish.after_submit,
         error: Polish.errors
     }
 }

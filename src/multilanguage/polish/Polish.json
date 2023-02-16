@@ -44,6 +44,11 @@
     "signInQues": "Pamiętasz hasło?",
     "signInLink": "Zaloguj się"
   },
+  "after_submit": {
+    "title": "Proszę sprawdzić email.",
+    "description": "Możesz tam zweryfikować swój adres e-mail i kontynuować pracę z TodoIg!",
+    "linkToMain": "\nWróć do strony głównej"
+  },
   "errors": {
     "Invalid token": "Nieprawidłowy token",
     "Failed to send the email": "Nie udało się wysłać e-mail",

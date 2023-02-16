@@ -5,10 +5,12 @@ import SubmitError from "../../errors/SubmitError";
 import SubmitInput from "../../input/SubmitInput";
 import {Link, useParams} from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import AfterSubmitEmail from "../../UI/after-submit/AfterSubmitEmail";
 
 const ForgotPassStart: React.FC = () => {
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
+    const [submitClicked, setSubmitClicked] = useState(false);
     const {t, i18n} = useTranslation(['forgot_pass', 'error']);
     const params = useParams();
 
@@ -37,10 +39,14 @@ const ForgotPassStart: React.FC = () => {
                     return Promise.reject((await res.json()).message)
             })
             .then(() => {
+                setSubmitClicked(true);
                 setError('');
             })
             .catch((err: string) => setError(err));
-    }
+    };
+
+    if (submitClicked)
+        return <AfterSubmitEmail/>
 
     return (
         <div className={'h-screen flex'}>
