@@ -66,6 +66,9 @@
     "The link has expired": "Термін дії посилання закінчився",
     "passNotMatch": "Паролі не співпадають",
     "Invalid password": "Невірний пароль",
-    "Password is weak": "Пароль слабкий"
+    "Password is weak": "Пароль слабкий",
+    "Cyrillic was used": "Не використовуйте кирилицю",
+    "Invalid language": "Неправильна мова",
+    "Old password is the same as new password": "Старий пароль збігається з новим"
   }
 }

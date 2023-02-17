@@ -59,6 +59,9 @@
     "The link has expired": "The link has expired",
     "passNotMatch": "Passwords do not match",
     "Invalid password": "Invalid password",
-    "Password is weak": "Password is weak"
+    "Password is weak": "Password is weak",
+    "Cyrillic was used": "Do not use cyrillic",
+    "Invalid language": "Invalid language",
+    "Old password is the same as new password": "The old password matches the new"
   }
 }

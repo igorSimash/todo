@@ -58,6 +58,10 @@
     "The link has expired": "Link wygasł",
     "passNotMatch": "Hasła nie pasują do siebie",
     "Invalid password": "Nieprawidłowy hasło",
-    "Password is weak": "Hasło jest słabe"
+    "Password is weak": "Hasło jest słabe",
+    "Cyrillic was used": "Nie używaj cyrylicy",
+    "Invalid language": "Nieprawidłowy język",
+    "Old password is the same as new password": "Stare hasło pasuje do nowego"
+
   }
 }
