@@ -8,7 +8,6 @@ interface ISubmitInput {
 const SubmitInput :React.FC<ISubmitInput> = ({value, onClick}) => {
 
     const handleSubmit = (e: React.FormEvent<HTMLInputElement>) => {
-        console.log('ggood')
         e.preventDefault();
         onClick();
     }

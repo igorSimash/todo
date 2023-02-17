@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {changeLanguageAction} from "../../redux/reducer/LanguageReducer";
+import {changeLanguageAction} from "../../../redux/reducer/LanguageReducer";
 
 const Todos:React.FC = () => {
     const dispatch = useDispatch();
@@ -37,6 +37,7 @@ const Todos:React.FC = () => {
         <div>
             Todos
             <button onClick={handleLogout}>EXIT</button>
+            <Link to={'/todos/change-pass'}> CHANGE PASSWORD</Link>
         </div>
     );
 };

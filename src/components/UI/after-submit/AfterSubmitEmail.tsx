@@ -1,12 +1,13 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import CenterFlexScreen from "../screen/CenterFlexScreen";
 
 const AfterSubmitEmail: React.FC = () => {
     const {t} = useTranslation(['afterSubmit'])
 
     return (
-        <div className={'h-screen w-screen flex flex-col gap-6 justify-center items-center text-center bg-blue-400'}>
+        <CenterFlexScreen className={'gap-6 bg-blue-400'}>
             <span className={'text-2xl font-bold text-white underline'}>
                 {t('title', {ns: 'afterSubmit'})}
             </span>
@@ -16,7 +17,7 @@ const AfterSubmitEmail: React.FC = () => {
             <Link to={'/'} className={'underline'}>
                 {t('linkToMain', {ns: 'afterSubmit'})}
             </Link>
-        </div>
+        </CenterFlexScreen>
     );
 };
 

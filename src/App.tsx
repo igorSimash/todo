@@ -17,7 +17,7 @@ function App() {
 
     useEffect(() => {
         if (data?.status === 200)
-            navigate('/todos');
+            navigate("/todos");
     }, [isLoading]);
 
     if (isLoading) return <LoaderFullScreen/>;

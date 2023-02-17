@@ -1,12 +1,13 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
-import Main from "../components/pages/Main";
+import Main from "../components/pages/main/Main";
 import RegistrationStart from "../components/pages/registration/RegistrationStart";
 import RegistrationFinal from "../components/pages/registration/RegistrationFinal";
-import Login from "../components/pages/Login";
+import Login from "../components/pages/login/Login";
 import ForgotPassStart from "../components/pages/forgot-pass/ForgotPassStart";
 import ForgotPassFinal from "../components/pages/forgot-pass/ForgotPassFinal";
-import Todos from "../components/pages/Todos";
+import Todos from "../components/pages/todos/Todos";
+import ChangePass from "../components/pages/change-pass/ChangePass";
 
 const Router = () => {
     return (
@@ -20,6 +21,7 @@ const Router = () => {
             <Route path="/forgot-pass/:error/" element={<ForgotPassStart/>}/>
             <Route path='/forgot-pass/final/:token' element={<ForgotPassFinal/>}/>
             <Route path='/todos' element={<Todos/>}/>
+            <Route path='/todos/change-pass' element={<ChangePass/>}/>\
             <Route path='*' element={<div>ERROR</div>}/>
         </Routes>
     );
