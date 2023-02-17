@@ -11,6 +11,7 @@ const resources = {
         login: English.login,
         forgot_pass: English.forgot_pass,
         forgot_pass_final: English.forgot_pass_final,
+        changePassword: English.change_password,
         afterSubmit: English.after_submit,
         error: English.errors
     },
@@ -20,6 +21,7 @@ const resources = {
         login: Ukrainian.login,
         forgot_pass: Ukrainian.forgot_pass,
         forgot_pass_final: Ukrainian.forgot_pass_final,
+        changePassword: Ukrainian.change_password,
         afterSubmit: Ukrainian.after_submit,
         error: Ukrainian.errors
     },
@@ -29,6 +31,7 @@ const resources = {
         login: Polish.login,
         forgot_pass: Polish.forgot_pass,
         forgot_pass_final: Polish.forgot_pass_final,
+        changePassword: Polish.change_password,
         afterSubmit: Polish.after_submit,
         error: Polish.errors
     }

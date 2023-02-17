@@ -45,6 +45,18 @@
     "signInQues": "Remember your password?",
     "signInLink": "Sign in"
   },
+  "change_password": {
+    "title": "Change Password",
+    "passContainTitle": "The password must contain at least:",
+    "contain8Symb": "8 symbols",
+    "containOneUpper": "One uppercase symbol",
+    "containOneLower": "One lowercase symbol",
+    "noCyrillic": "No cyrillic",
+    "oldPass": "Old password",
+    "newPass": "New password",
+    "repNewPass": "Repeat new password",
+    "submit": "Change password"
+  },
   "after_submit": {
     "title": "Please, check your email.",
     "description": "You can verify your email there and continue working with TodoIg!",

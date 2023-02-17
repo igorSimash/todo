@@ -44,6 +44,18 @@
     "signInQues": "Pamiętasz hasło?",
     "signInLink": "Zaloguj się"
   },
+  "change_password": {
+    "title": "Zmień hasło",
+    "passContainTitle": "Hasło musi zawierać co najmniej:",
+    "contain8Symb": "8 symboli",
+    "containOneUpper": "Jeden wielki symbol",
+    "containOneLower": "Jeden mały symbol",
+    "noCyrillic": "Bez cyrylicy",
+    "oldPass": "Stare hasło",
+    "newPass": "Nowe hasło",
+    "repNewPass": "Powtórz nowe hasło",
+    "submit": "Zmień hasło"
+  },
   "after_submit": {
     "title": "Proszę sprawdzić email.",
     "description": "Możesz tam zweryfikować swój adres e-mail i kontynuować pracę z TodoIg!",

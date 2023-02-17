@@ -1,4 +1,5 @@
 import {ILanguageAction, ILanguageState} from "../../types/language";
+import i18n from "../../multilanguage/i18n";
 
 const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';
 
@@ -15,4 +16,10 @@ export const languageReducer = (state = initialState, action:ILanguageAction): I
     }
 };
 
-export const changeLanguageAction = (payload: string) => ({type: CHANGE_LANGUAGE, payload});
+export const changeLanguageAction = (payload: string) => {
+    i18n.changeLanguage(payload);
+    return {
+        type: CHANGE_LANGUAGE,
+        payload
+    }
+};
