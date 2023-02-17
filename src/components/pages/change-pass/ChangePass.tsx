@@ -5,6 +5,7 @@ import SubmitInput from "../../input/SubmitInput";
 import LightText from "../../UI/text/LightText";
 import SubmitError from "../../errors/SubmitError";
 import {useTranslation} from "react-i18next";
+import {useNavigate} from "react-router-dom";
 
 const ChangePass: React.FC = () => {
     const [oldPass, setOldPass] = useState('');
@@ -12,12 +13,34 @@ const ChangePass: React.FC = () => {
     const [repNewPass, setRepNewPass] = useState('');
     const [error, setError] = useState('');
     const {t} = useTranslation(['error']);
-
+    const navigate = useNavigate()
     const handleClick = () => {
         if (newPass !== repNewPass)
             setError('passNotMatch');
         else {
-            //fetch
+            const body = JSON.stringify({
+                oldPassword: oldPass,
+                newPassword: newPass
+            });
+            fetch(process.env.REACT_APP_API_CHANGE_PASS as string,
+                {
+                    credentials: 'include',
+                    mode: 'cors',
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body
+                })
+                .then(async (res: Response) => {
+                    if (!res.ok)
+                        return Promise.reject((await res.json()).message);
+                })
+                .then(() => {
+                    setError('');
+                    navigate('/login');
+                })
+                .catch((err: string) => {
+                    setError(err)
+                })
         }
     }
 
