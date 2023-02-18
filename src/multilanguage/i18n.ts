@@ -41,7 +41,7 @@ i18next
     .use(initReactI18next)
     .init({
         resources,
-        lng: "en-US", //default language
+        lng: "en-US", // Default language
     });
 
 export default i18next;

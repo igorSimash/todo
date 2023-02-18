@@ -8,6 +8,7 @@ import SubmitInput from "../../input/SubmitInput";
 import SubmitError from "../../errors/SubmitError";
 import {useDispatch} from "react-redux";
 import {changeLanguageAction} from "../../../redux/reducer/LanguageReducer";
+import {postData} from "../../../utils/fetch-data/PostData";
 
 const RegistrationFinal: React.FC = () => {
     const {t, i18n} = useTranslation(['regFinal', 'error']);
@@ -27,23 +28,14 @@ const RegistrationFinal: React.FC = () => {
         if (password !== repeatPassword)
             setError('passNotMatch');
         else {
-            const body = JSON.stringify({
+            const body ={
                 email,
                 password,
                 token: params.token,
                 language: i18n.language
-            });
-            fetch(process.env.REACT_APP_API_REG_FINAL as string,
-                {
-                    mode: 'cors',
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body
-                })
-                .then(async (res: Response) => {
-                    if (!res.ok)
-                        return Promise.reject((await res.json()).message);
-                })
+            }
+
+            postData(process.env.REACT_APP_API_REG_FINAL as string, body)
                 .then(() => {
                     setError('');
                     navigate('/login');

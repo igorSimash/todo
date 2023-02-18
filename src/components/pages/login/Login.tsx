@@ -6,6 +6,7 @@ import {Link, useNavigate} from "react-router-dom";
 import LanguageSelect from "../../select/LanguageSelect";
 import {useTranslation} from "react-i18next";
 import SubmitError from "../../errors/SubmitError";
+import {postData} from "../../../utils/fetch-data/PostData";
 
 const Login = () => {
     const {t} = useTranslation(['login', 'error']);
@@ -15,23 +16,11 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        const body = JSON.stringify({
+        const body = {
             email,
             password
-        });
-
-        fetch(process.env.REACT_APP_API_LOGIN as string,
-           {
-               credentials: 'include',
-               mode: 'cors',
-               method: 'POST',
-               headers: { 'Content-Type': 'application/json' },
-               body
-           })
-            .then(async (res: Response) => {
-                if (!res.ok)
-                    return Promise.reject((await res.json()).message);
-            })
+        };
+        postData(process.env.REACT_APP_API_LOGIN as string, body)
             .then(() => {
                 setError('');
                 navigate('/todos');

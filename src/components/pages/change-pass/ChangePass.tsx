@@ -5,6 +5,7 @@ import LightText from "../../UI/text/LightText";
 import SubmitError from "../../errors/SubmitError";
 import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router-dom";
+import {postData} from "../../../utils/fetch-data/PostData";
 
 const ChangePass: React.FC = () => {
     const [oldPass, setOldPass] = useState('');
@@ -17,29 +18,19 @@ const ChangePass: React.FC = () => {
         if (newPass !== repNewPass)
             setError('passNotMatch');
         else {
-            const body = JSON.stringify({
+            const body = {
                 oldPassword: oldPass,
                 newPassword: newPass
-            });
-            fetch(process.env.REACT_APP_API_CHANGE_PASS as string,
-                {
-                    credentials: 'include',
-                    mode: 'cors',
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body
-                })
-                .then(async (res: Response) => {
-                    if (!res.ok)
-                        return Promise.reject((await res.json()).message);
-                })
+            };
+
+            postData(process.env.REACT_APP_API_CHANGE_PASS as string, body)
                 .then(() => {
                     setError('');
                     navigate('/login');
                 })
                 .catch((err: string) => {
                     setError(err)
-                })
+                });
         }
     }
 

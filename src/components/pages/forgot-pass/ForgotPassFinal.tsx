@@ -7,6 +7,7 @@ import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {changeLanguageAction} from "../../../redux/reducer/LanguageReducer";
 import {useDispatch} from "react-redux";
+import {postData} from "../../../utils/fetch-data/PostData";
 
 const ForgotPassFinal: React.FC = () => {
     const {t} = useTranslation(['forgot_pass_final', 'error']);
@@ -25,22 +26,13 @@ const ForgotPassFinal: React.FC = () => {
         if (password !== repeatPassword)
             setError('passNotMatch');
         else {
-            const body = JSON.stringify({
+            const body = {
                 email,
                 password,
                 token: params.token,
-            });
-            fetch(process.env.REACT_APP_API_FORGOT_PASS_FINAL as string,
-                {
-                    mode: 'cors',
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body
-                })
-                .then(async (res: Response) => {
-                    if (!res.ok)
-                        return Promise.reject((await res.json()).message);
-                })
+            }
+
+            postData(process.env.REACT_APP_API_FORGOT_PASS_FINAL as string, body)
                 .then(() => {
                     setError('');
                     navigate('/login');

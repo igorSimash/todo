@@ -6,6 +6,7 @@ import SubmitInput from "../../input/SubmitInput";
 import {Link, useParams} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import AfterSubmitEmail from "../../UI/after-submit/AfterSubmitEmail";
+import {postData} from "../../../utils/fetch-data/PostData";
 
 const ForgotPassStart: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -22,22 +23,12 @@ const ForgotPassStart: React.FC = () => {
     }, [params.error]);
 
     const handleClick = () => {
-        const body = JSON.stringify({
+        const body = {
             email,
             language: i18n.language
-        });
+        }
 
-        fetch(process.env.REACT_APP_API_FORGOT_PASS as string,
-            {
-                mode: 'cors',
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body
-            })
-            .then(async (res: Response) => {
-                if (!res.ok)
-                    return Promise.reject((await res.json()).message)
-            })
+        postData(process.env.REACT_APP_API_FORGOT_PASS as string, body)
             .then(() => {
                 setSubmitClicked(true);
                 setError('');
