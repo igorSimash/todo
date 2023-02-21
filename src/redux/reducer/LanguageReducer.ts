@@ -1,4 +1,4 @@
-import {ILanguageAction, ILanguageState} from "../../types/language";
+import {ILanguageAction, ILanguageState} from "../../types/reducer/language";
 import i18n from "../../multilanguage/i18n";
 
 const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE';

@@ -1,25 +1,18 @@
 import React, {useEffect} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {changeLanguageAction} from "../../../redux/reducer/LanguageReducer";
+import {fetchTodos} from "../../../redux/action-creators/fetchTodos";
+import {useTypedSelector} from "../../../hooks/useTypedSelect";
 
-const Todos:React.FC = () => {
+const Todos: React.FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const {loading, todos, error} = useTypedSelector(state => state.todos)
     useEffect(() => {
-        fetch(process.env.REACT_APP_API_TODO as string,
-            {
-                credentials: 'include'
-            })
-            .then((res: Response) => {
-                if (!res.ok)
-                    return Promise.reject();
-                return res.json()
-            })
-            .then((data: {language: string}) => dispatch(changeLanguageAction(data.language)))
-            .catch(() => navigate('/login'));
-    }, []);
+        dispatch(fetchTodos());
+        if (error === 'Session expired') navigate('/login');
+        else navigate('/todos')
+    }, [error]);
 
     const handleLogout = () => {
         fetch(process.env.REACT_APP_API_LOGOUT as string,
