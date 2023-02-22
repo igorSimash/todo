@@ -10,8 +10,8 @@ const Todos: React.FC = () => {
     const {loading, todos, error} = useTypedSelector(state => state.todos)
     useEffect(() => {
         dispatch(fetchTodos());
-        if (error === 'Session expired') navigate('/login');
-        else navigate('/todos')
+        if (error === 'Session expired')
+            navigate('/login');
     }, [error]);
 
     const handleLogout = () => {

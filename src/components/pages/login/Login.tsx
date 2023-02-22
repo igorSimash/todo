@@ -73,10 +73,10 @@ const Login = () => {
                 <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end'}>
                     <span className={'font-semibold'}>{t('signUpQues', {ns: 'login'})}</span>
                     <Link to={'/registration/start'}
-                          className={'font-bold text-blue-600 text-lg'}>{t('signUpLink', {ns: 'login'})}</Link>
+                          className={'font-bold text-solidBlue text-lg'}>{t('signUpLink', {ns: 'login'})}</Link>
                 </div>
             </div>
-            <div className={'h-full w-7/12 bg-blue-400'}>
+            <div className={'h-full w-7/12 bg-lightBlue'}>
 
             </div>
         </div>

@@ -39,7 +39,7 @@ const ChangePass: React.FC = () => {
             <div className={'w-7/12'}>
                 <div className={'flex justify-center items-center h-full'}>
                     <div className={'flex flex-col gap-14'}>
-                        <span className={'text-6xl text-blue-500'}>{t('title', {ns: 'changePassword'})}</span>
+                        <span className={'text-6xl text-solidBlue'}>{t('title', {ns: 'changePassword'})}</span>
                         <div className={'flex flex-col gap-2'}>
                             <span className={'text-xl mb-3'}>{t('passContainTitle', {ns: 'changePassword'})}</span>
                             <LightText>{t('contain8Symb', {ns: 'changePassword'})}</LightText>
@@ -60,9 +60,7 @@ const ChangePass: React.FC = () => {
                         <PasswordInput onChange={e => setRepNewPass(e.target.value)}
                                        label={t('repNewPass', {ns: 'changePassword'})} id={'rep-new-pass'}/>
                         <SubmitError className={`${error.length > 0 && 'opacity-100'}`}>
-                            {
-                                t(error, {ns: 'error'})
-                            }
+                            {t(error, {ns: 'error'})}
                         </SubmitError>
                     </div>
                     <div className={'w-full'}>

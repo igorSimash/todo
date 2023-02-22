@@ -21,6 +21,7 @@ export const fetchTodos = (): any => {
                     });
                 })
         } catch (err) {
+            console.log(err);
             dispatch({type: TodoActionType.FETCH_TODOS_ERROR, payload: err as string})
         }
     }

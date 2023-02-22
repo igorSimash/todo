@@ -19,3 +19,5 @@ export const todoReducer = (state = defaultState, action: TodoAction): TodoState
     }
 };
 
+export const setTodosAction = (payload: unknown[]) => ({type: TodoActionType.FETCH_TODOS_SUCCESS, payload})
+

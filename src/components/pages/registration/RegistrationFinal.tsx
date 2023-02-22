@@ -48,7 +48,7 @@ const RegistrationFinal: React.FC = () => {
 
     return (
         <div className={'h-screen flex'}>
-            <div className={'h-full w-5/12 bg-blue-400'}>
+            <div className={'h-full w-5/12 bg-lightBlue'}>
 
             </div>
             <div className={'relative w-7/12'}>
@@ -80,7 +80,7 @@ const RegistrationFinal: React.FC = () => {
                 </div>
                 <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end'}>
                     <span className={'font-semibold'}>{t('signInQues', {ns: 'regFinal'})}</span>
-                    <Link to={'/login'} className={'font-bold text-blue-600 text-lg'}>{t('signInLink', {ns: 'regFinal'})}</Link>
+                    <Link to={'/login'} className={'font-bold text-solidBlue text-lg'}>{t('signInLink', {ns: 'regFinal'})}</Link>
                 </div>
             </div>
         </div>
