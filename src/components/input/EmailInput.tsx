@@ -28,7 +28,7 @@ const EmailInput: React.FC<IEmailInput> = ({label,id, readonly, value, onChange 
                 required
                 id={id}
                 onChange={onChange}
-                className={'border-black border-b-2 h-10 w-full'}
+                className={'border-black border-b-2 h-10 w-full bg-transparent'}
                 value={value}
             />
         </div>

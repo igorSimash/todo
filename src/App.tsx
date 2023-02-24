@@ -3,8 +3,7 @@ import './App.css';
 import {useNavigate} from "react-router-dom";
 import useSWR from 'swr'
 import LoaderFullScreen from "./components/UI/loader/LoaderFullScreen";
-import {store} from "./redux/store";
-import {Provider, useDispatch} from "react-redux";
+import {useDispatch} from "react-redux";
 import Router from "./router/Router";
 import {setTodosAction} from "./redux/reducer/todoReducer";
 import {useTypedSelector} from "./hooks/useTypedSelect";
@@ -20,14 +19,13 @@ function App() {
 
     useEffect(() => {
         dispatch(setTodosAction([]));
-
         if (data?.status === 200)
             navigate("/todos");
     }, [isLoading, error]);
 
     if (isLoading) return <LoaderFullScreen/>;
     return (
-        <div className="App">
+        <div className="App bg-coolWhite w-screen h-screen">
             <Router/>
         </div>
     );

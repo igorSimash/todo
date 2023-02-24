@@ -11,7 +11,7 @@ export const fetchTodos = (): any => {
                 .then(async (res: any) => {
                     if (!res.ok)
                         return Promise.reject((await res.json()).message);
-                    return await res.json()
+                    return await res.json();
                 })
                 .then((data: { language: string, todos: unknown[] }) => {
                     dispatch(changeLanguageAction(data.language))
@@ -22,7 +22,7 @@ export const fetchTodos = (): any => {
                 })
         } catch (err) {
             console.log(err);
-            dispatch({type: TodoActionType.FETCH_TODOS_ERROR, payload: err as string})
+            dispatch({type: TodoActionType.FETCH_TODOS_ERROR, payload: err as string});
         }
     }
 }

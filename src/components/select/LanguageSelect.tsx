@@ -2,8 +2,11 @@ import React from 'react';
 import {useDispatch} from "react-redux";
 import {changeLanguageAction} from "../../redux/reducer/LanguageReducer";
 import {useTypedSelector} from "../../hooks/useTypedSelect";
+import MenuItem from '@mui/material/MenuItem';
+import Select, {SelectChangeEvent} from '@mui/material/Select';
+import {FormControl} from "@mui/material";
 
-const languages:({ title: string; value: string })[] = [
+const languages: ({ title: string; value: string })[] = [
     {
         value: 'en-US',
         title: "English"
@@ -20,26 +23,29 @@ const languages:({ title: string; value: string })[] = [
 
 const LanguageSelect: React.FC = () => {
     const dispatch = useDispatch();
-    const language = useTypedSelector(state => state.language.language)
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const language = useTypedSelector(state => state.language.language);
+    const handleChange = (e: SelectChangeEvent) => {
         dispatch(changeLanguageAction(e.target.value));
     };
 
     return (
         <div>
-            <select
-                className="border-2 border-black"
-                onChange={handleChange}
-                value={language}
-            >
-                {languages.map((language, index) =>
-                    <option
-                        key={index}
-                        className="w-12"
-                        value={language.value}>
-                        {language.title}
-                    </option>)}
-            </select>
+            <FormControl variant="standard" sx={{m: 1, width: 145}}>
+                <Select
+                    labelId="demo-simple-select-standard-label"
+                    id="demo-simple-select-standard"
+                    value={language}
+                    label={"Language"}
+                    onChange={handleChange}
+                >
+                    {
+                        languages.map((language, index) =>
+                            <MenuItem key={index} value={language.value}>
+                                {language.title}
+                            </MenuItem>
+                        )}
+                </Select>
+            </FormControl>
         </div>
     );
 };
