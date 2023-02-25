@@ -10,7 +10,7 @@ const CategoriesAside: React.FC<{selectedCategory: number; setSelectedCategory: 
     categoriesToRender.unshift({id: -1, name: t('allCategory', {ns: 'todos'})});
     return (
         <aside className={'h-full w-64 '}>
-            <div className={'flex flex-col mx-9'}>
+            <div className={'flex flex-col gap-5 mx-9'}>
                 {categoriesToRender.map((el) =>
                     <Category
                         className={el.id === selectedCategory ? 'bg-gray-300' : ''}

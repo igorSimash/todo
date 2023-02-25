@@ -28,7 +28,7 @@ const Todos: React.FC = () => {
                     LOGO TodoIg
                 </div>
                 <div className={'flex gap-5'}>
-                    <LanguageSelect/>
+                    <LanguageSelect changeInDB/>
                     <UserMenuList/>
                 </div>
             </MainHeader>

@@ -21,11 +21,20 @@ const languages: ({ title: string; value: string })[] = [
     }
 ];
 
-const LanguageSelect: React.FC = () => {
+const LanguageSelect: React.FC<{changeInDB?: boolean}> = ({changeInDB = false}) => {
     const dispatch = useDispatch();
     const language = useTypedSelector(state => state.language.language);
-    const handleChange = (e: SelectChangeEvent) => {
+    const handleChange = async (e: SelectChangeEvent) => {
         dispatch(changeLanguageAction(e.target.value));
+        if (changeInDB) {
+            await fetch(process.env.REACT_APP_API_USER_LANGUAGE as string, {
+                credentials: 'include',
+                mode: 'cors',
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({language: e.target.value})
+            });
+        }
     };
 
     return (

@@ -11,9 +11,9 @@ const TodoCheckbox: React.FC<{ priorityId: number }> = ({priorityId}) => {
                 icon={<CircleTwoToneIcon/>}
                 checkedIcon={<CheckCircleTwoToneIcon/>}
                 sx={{
-                    color: '#ff1744',
+                    color: '#FF0000',
                     '&.Mui-checked': {
-                        color: '#ff1744',
+                        color: '#FF0000',
                     },
                 }}
             />
