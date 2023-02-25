@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import LanguageSelect from "../../select/LanguageSelect";
-import EmailInput from "../../input/EmailInput";
-import SubmitError from "../../errors/SubmitError";
-import SubmitInput from "../../input/SubmitInput";
+import LanguageSelect from "../../UI/select/LanguageSelect";
+import EmailInput from "../../UI/input/EmailInput";
+import SubmitError from "../../UI/errors/SubmitError";
+import SubmitInput from "../../UI/input/SubmitInput";
 import {Link, useParams} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import AfterSubmitEmail from "../../UI/after-submit/AfterSubmitEmail";
@@ -41,7 +41,7 @@ const ForgotPassStart: React.FC = () => {
 
     return (
         <div className={'h-screen flex'}>
-            <div className={'h-full w-5/12 bg-blue-400'}>
+            <div className={'h-full w-5/12 bg-lightBlue'}>
 
             </div>
             <div className={'relative w-7/12'}>
@@ -76,7 +76,7 @@ const ForgotPassStart: React.FC = () => {
                 </div>
                 <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end'}>
                     <span className={'font-semibold'}>{t('signInQues', {ns: 'forgot_pass'})}</span>
-                    <Link to={'/login'} className={'font-bold text-blue-600 text-lg'}>{t('signInLink', {ns: 'forgot_pass'})}</Link>
+                    <Link to={'/login'} className={'font-bold text-solidBlue text-lg'}>{t('signInLink', {ns: 'forgot_pass'})}</Link>
                 </div>
             </div>
         </div>

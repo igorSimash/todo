@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import EmailInput from "../../input/EmailInput";
-import PasswordInput from "../../input/PasswordInput";
-import SubmitInput from "../../input/SubmitInput";
+import EmailInput from "../../UI/input/EmailInput";
+import PasswordInput from "../../UI/input/PasswordInput";
+import SubmitInput from "../../UI/input/SubmitInput";
 import {Link, useNavigate} from "react-router-dom";
-import LanguageSelect from "../../select/LanguageSelect";
+import LanguageSelect from "../../UI/select/LanguageSelect";
 import {useTranslation} from "react-i18next";
-import SubmitError from "../../errors/SubmitError";
+import SubmitError from "../../UI/errors/SubmitError";
 import {postData} from "../../../utils/fetch-data/PostData";
 
 const Login = () => {

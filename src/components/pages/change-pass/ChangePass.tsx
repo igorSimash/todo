@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import PasswordInput from "../../input/PasswordInput";
-import SubmitInput from "../../input/SubmitInput";
+import PasswordInput from "../../UI/input/PasswordInput";
+import SubmitInput from "../../UI/input/SubmitInput";
 import LightText from "../../UI/text/LightText";
-import SubmitError from "../../errors/SubmitError";
+import SubmitError from "../../UI/errors/SubmitError";
 import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router-dom";
 import {postData} from "../../../utils/fetch-data/PostData";

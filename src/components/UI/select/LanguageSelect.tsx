@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
-import {changeLanguageAction} from "../../redux/reducer/LanguageReducer";
-import {useTypedSelector} from "../../hooks/useTypedSelect";
+import {changeLanguageAction} from "../../../redux/reducer/LanguageReducer";
+import {useTypedSelector} from "../../../hooks/useTypedSelect";
 import MenuItem from '@mui/material/MenuItem';
 import Select, {SelectChangeEvent} from '@mui/material/Select';
 import {FormControl} from "@mui/material";
@@ -29,7 +29,7 @@ const LanguageSelect: React.FC = () => {
     };
 
     return (
-        <div>
+        <div className={'flex items-center'}>
             <FormControl variant="standard" sx={{m: 1, width: 145}}>
                 <Select
                     labelId="demo-simple-select-standard-label"

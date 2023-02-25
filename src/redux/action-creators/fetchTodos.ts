@@ -13,11 +13,15 @@ export const fetchTodos = (): any => {
                         return Promise.reject((await res.json()).message);
                     return await res.json();
                 })
-                .then((data: { language: string, todos: unknown[] }) => {
+                .then((data: { language: string, todos: unknown[], categories: {name: string; id: number}[] }) => {
+                    console.log(data);
                     dispatch(changeLanguageAction(data.language))
                     dispatch({
                         type: TodoActionType.FETCH_TODOS_SUCCESS,
-                        payload: data.todos
+                        payload: {
+                            todos: data.todos,
+                            categories: data.categories
+                        }
                     });
                 })
         } catch (err) {

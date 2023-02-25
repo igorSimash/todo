@@ -4,7 +4,7 @@ interface FetchTodoAction {
 
 interface FetchTodoSuccessAction {
     type: TodoActionType.FETCH_TODOS_SUCCESS,
-    payload: unknown[]
+    payload: { todos: unknown[]; categories: {name: string; id: number}[]; }
 }
 
 interface FetchTodoErrorAction {
@@ -13,9 +13,10 @@ interface FetchTodoErrorAction {
 }
 
 export interface TodoState {
-    todos: unknown[]
-    loading: boolean,
-    error: null | string
+    todos: unknown[];
+    categories: {name: string; id: number}[];
+    loading: boolean;
+    error: null | string;
 }
 
 export enum TodoActionType {

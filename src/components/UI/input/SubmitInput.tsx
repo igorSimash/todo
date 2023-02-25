@@ -17,7 +17,7 @@ const SubmitInput :React.FC<ISubmitInput> = ({value, onClick}) => {
             type="submit"
             value={value}
             onClick={handleSubmit}
-            className={'w-full h-14 bg-solidBlue text-white rounded-2xl cursor-pointer'}
+            className={'w-full h-14 bg-solidBlue text-white rounded-2xl cursor-pointer font-medium transition-all hover:bg-opacity-80'}
         />
     );
 };

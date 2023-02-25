@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
-import EmailInput from "../../input/EmailInput";
-import PasswordInput from "../../input/PasswordInput";
-import LanguageSelect from "../../select/LanguageSelect";
+import EmailInput from "../../UI/input/EmailInput";
+import PasswordInput from "../../UI/input/PasswordInput";
+import LanguageSelect from "../../UI/select/LanguageSelect";
 import {useTranslation} from "react-i18next";
-import SubmitInput from "../../input/SubmitInput";
-import SubmitError from "../../errors/SubmitError";
+import SubmitInput from "../../UI/input/SubmitInput";
+import SubmitError from "../../UI/errors/SubmitError";
 import {useDispatch} from "react-redux";
 import {changeLanguageAction} from "../../../redux/reducer/LanguageReducer";
 import {postData} from "../../../utils/fetch-data/PostData";

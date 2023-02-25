@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import LanguageSelect from "../../select/LanguageSelect";
-import EmailInput from "../../input/EmailInput";
-import SubmitInput from "../../input/SubmitInput";
+import LanguageSelect from "../../UI/select/LanguageSelect";
+import EmailInput from "../../UI/input/EmailInput";
+import SubmitInput from "../../UI/input/SubmitInput";
 import {Link, useParams} from "react-router-dom";
-import SubmitError from "../../errors/SubmitError";
+import SubmitError from "../../UI/errors/SubmitError";
 import {useTranslation} from "react-i18next";
 import AfterSubmitEmail from "../../UI/after-submit/AfterSubmitEmail";
 import {postData} from "../../../utils/fetch-data/PostData";
