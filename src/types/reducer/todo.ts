@@ -1,10 +1,21 @@
+export interface ITodo {
+    id: number;
+    title: string;
+    description: string | null;
+    priority_id: number;
+    deadline: string | null;
+    category_id: number | null;
+}
+
 interface FetchTodoAction {
     type: TodoActionType.FETCH_TODOS,
 }
 
+
+
 interface FetchTodoSuccessAction {
     type: TodoActionType.FETCH_TODOS_SUCCESS,
-    payload: { todos: unknown[]; categories: {name: string; id: number}[]; }
+    payload: { todos: ITodo[]; categories: {name: string; id: number}[]; }
 }
 
 interface FetchTodoErrorAction {
@@ -12,8 +23,9 @@ interface FetchTodoErrorAction {
     payload: string
 }
 
+
 export interface TodoState {
-    todos: unknown[];
+    todos: ITodo[];
     categories: {name: string; id: number}[];
     loading: boolean;
     error: null | string;

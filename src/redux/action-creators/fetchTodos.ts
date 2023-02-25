@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {TodoAction, TodoActionType} from "../../types/reducer/todo";
+import {ITodo, TodoAction, TodoActionType} from "../../types/reducer/todo";
 import {changeLanguageAction} from "../reducer/LanguageReducer";
 import {ILanguageAction} from "../../types/reducer/language";
 
@@ -13,7 +13,7 @@ export const fetchTodos = (): any => {
                         return Promise.reject((await res.json()).message);
                     return await res.json();
                 })
-                .then((data: { language: string, todos: unknown[], categories: {name: string; id: number}[] }) => {
+                .then((data: { language: string, todos: ITodo[], categories: {name: string; id: number}[] }) => {
                     console.log(data);
                     dispatch(changeLanguageAction(data.language))
                     dispatch({
