@@ -6,6 +6,7 @@ import Polish from "./polish/Polish.json"
 
 const resources = {
     'en-US': {
+        main: English.main,
         regStart: English.registrationStart,
         regFinal: English.registrationFinal,
         login: English.login,
@@ -13,9 +14,11 @@ const resources = {
         forgot_pass_final: English.forgot_pass_final,
         changePassword: English.change_password,
         afterSubmit: English.after_submit,
-        error: English.errors
+        error: English.errors,
+        todos: English.todos,
     },
     'uk-UA': {
+        main: Ukrainian.main,
         regStart: Ukrainian.registrationStart,
         regFinal: Ukrainian.registrationFinal,
         login: Ukrainian.login,
@@ -23,9 +26,11 @@ const resources = {
         forgot_pass_final: Ukrainian.forgot_pass_final,
         changePassword: Ukrainian.change_password,
         afterSubmit: Ukrainian.after_submit,
-        error: Ukrainian.errors
+        error: Ukrainian.errors,
+        todos: Ukrainian.todos,
     },
     'pl-PL': {
+        main: Polish.main,
         regStart: Polish.registrationStart,
         regFinal: Polish.registrationFinal,
         login: Polish.login,
@@ -33,7 +38,8 @@ const resources = {
         forgot_pass_final: Polish.forgot_pass_final,
         changePassword: Polish.change_password,
         afterSubmit: Polish.after_submit,
-        error: Polish.errors
+        error: Polish.errors,
+        todos: Polish.todos,
     }
 }
 

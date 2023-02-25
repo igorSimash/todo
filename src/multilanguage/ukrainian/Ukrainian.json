@@ -1,11 +1,9 @@
 {
   "main": {
-    "title": "",
-    "description": "",
-    "startBtn": "",
-    "header": {
-      "logoDescription": ""
-    }
+    "title" : "Організуй своє життя легким способом",
+    "description": "\nTodoIg – корисний менеджер завдань. Це зосередить вас і допоможе контролювати всі ваші завдання.",
+    "getStartedLink": "Розпочати",
+    "signInLink": "Увійти"
   },
   "registrationStart": {
     "title": "Створити акаунт",
@@ -34,6 +32,12 @@
     "signUpQues": "Немає акаунта?",
     "signUpLink": "Зареєструватися",
     "resetPassword": "Cкинути пароль"
+  },
+  "todos": {
+    "allCategory" : "Всі",
+    "changePassword": "Змінити пароль",
+    "logout": "Вийти",
+    "total": "Всього"
   },
   "forgot_pass": {
     "title": "Забули пароль?",

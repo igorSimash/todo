@@ -7,14 +7,14 @@ const AfterSubmitEmail: React.FC = () => {
     const {t} = useTranslation(['afterSubmit'])
 
     return (
-        <CenterFlexScreen className={'gap-6 bg-blue-400'}>
+        <CenterFlexScreen className={'gap-6 bg-mediumBlue'}>
             <span className={'text-2xl font-bold text-white underline'}>
                 {t('title', {ns: 'afterSubmit'})}
             </span>
             <span className={'text-xl text-white font-semibold'}>
                 {t('description', {ns: 'afterSubmit'})}
             </span>
-            <Link to={'/'} className={'underline'}>
+            <Link to={'/'} className={'underline text-black'}>
                 {t('linkToMain', {ns: 'afterSubmit'})}
             </Link>
         </CenterFlexScreen>

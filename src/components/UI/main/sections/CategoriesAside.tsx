@@ -1,11 +1,13 @@
 import React from 'react';
 import Category from "../../todo-data-lists/Category";
 import {useTypedSelector} from "../../../../hooks/useTypedSelect";
+import {useTranslation} from "react-i18next";
 
-const CaregoriesAside: React.FC<{selectedCategory: number; setSelectedCategory: (id: number) => void}> = ({selectedCategory, setSelectedCategory}) => {
+const CategoriesAside: React.FC<{selectedCategory: number; setSelectedCategory: (id: number) => void}> = ({selectedCategory, setSelectedCategory}) => {
+    const {t} = useTranslation('todos');
     const {categories} = useTypedSelector(state => state.todos);
     const categoriesToRender = [...categories];
-    categoriesToRender.unshift({id: -1, name: 'All'});
+    categoriesToRender.unshift({id: -1, name: t('allCategory', {ns: 'todos'})});
     return (
         <aside className={'h-full w-64 '}>
             <div className={'flex flex-col mx-9'}>
@@ -21,4 +23,4 @@ const CaregoriesAside: React.FC<{selectedCategory: number; setSelectedCategory: 
     );
 };
 
-export default CaregoriesAside;
+export default CategoriesAside;

@@ -1,4 +1,10 @@
 {
+  "main": {
+    "title" : "Zorganizuj swoje życie w łatwy sposób",
+    "description": "TodoIg – pomocny menedżer zadań. To da ci skupienie i pomoże ci kontrolować wszystkie twoje zadania.",
+    "getStartedLink": "Rozpocznij",
+    "signInLink": "Zaloguj się"
+  },
   "registrationStart": {
     "title": "Stwórz nowe konto",
     "lightTitle": "Zacznijmy",
@@ -26,6 +32,12 @@
     "signUpQues": "Nie masz konta?",
     "signUpLink": "Zapisz się",
     "resetPassword": "Zresetuj hasło"
+  },
+  "todos": {
+    "allCategory" : "Wszystkie",
+    "changePassword": "Zmień hasło",
+    "logout": "Wyloguj",
+    "total": "Wszystko"
   },
   "forgot_pass": {
     "title": "Nie pamiętasz hasła?",

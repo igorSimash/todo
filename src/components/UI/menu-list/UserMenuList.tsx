@@ -3,10 +3,13 @@ import {Avatar, Divider, ListItemIcon, Menu, MenuItem} from "@mui/material";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import {useNavigate} from "react-router-dom";
+import {useTranslation} from "react-i18next";
 
 const UserMenuList:React.FC = () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const {t} = useTranslation('todos');
+
     const handleClick = (e: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(e.currentTarget);
     };
@@ -72,13 +75,13 @@ const UserMenuList:React.FC = () => {
                     <ListItemIcon>
                         <Settings fontSize="small" />
                     </ListItemIcon>
-                    Change password
+                    {t('changePassword', {ns: 'todos'})}
                 </MenuItem>
                 <MenuItem onClick={handleLogout}>
                     <ListItemIcon>
                         <Logout fontSize="small" />
                     </ListItemIcon>
-                    Logout
+                    {t('logout', {ns: 'todos'})}
                 </MenuItem>
             </Menu>
         </div>

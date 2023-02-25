@@ -1,4 +1,10 @@
 {
+  "main": {
+    "title" : "Organize your life in an easy way",
+    "description": "TodoIg – helpful task manager. It will give you focus and help you to control all your tasks.",
+    "getStartedLink": "Get started",
+    "signInLink": "Sign in"
+  },
   "registrationStart": {
     "title": "Create an account",
     "lightTitle": "Let's get started",
@@ -27,6 +33,12 @@
     "signUpQues": "Do not have an account?",
     "signUpLink": "Sign up",
     "resetPassword": "Reset password"
+  },
+  "todos": {
+    "allCategory" : "All",
+    "changePassword": "Change password",
+    "logout": "Logout",
+    "total": "Total"
   },
   "forgot_pass": {
     "title": "Forgot password?",
