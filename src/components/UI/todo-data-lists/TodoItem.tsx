@@ -12,7 +12,7 @@ interface ITodoItemProps {
 
 const TodoItem: React.FC<ITodoItemProps> = ({title, description, priorityId, deadline, categoryId}) => {
     return (
-        <div className={`flex border-b-2 w-1/2 pb-1 rounded-lg
+        <div className={`flex w-1/2 pb-1 rounded-lg cursor-pointer
          ${deadline && new Date(deadline) < new Date() && ''}`}>
             <TodoCheckbox priorityId={priorityId}/>
             <div className={'flex flex-col justify-center'}>

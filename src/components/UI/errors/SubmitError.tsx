@@ -4,7 +4,7 @@ const SubmitError: React.FC<{ className: string, children: string }> = ({classNa
     
 
     return (
-        <span className={`text-red-500 font-semibold h-6 opacity-0 ${className}`}>
+        <span className={`text-red-500 font-semibold h-6 ${className}`}>
             {children}
         </span>
     );

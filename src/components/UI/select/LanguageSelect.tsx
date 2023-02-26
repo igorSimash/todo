@@ -21,7 +21,7 @@ const languages: ({ title: string; value: string })[] = [
     }
 ];
 
-const LanguageSelect: React.FC<{changeInDB?: boolean}> = ({changeInDB = false}) => {
+const LanguageSelect: React.FC<{changeInDB?: boolean, className?: string}> = ({changeInDB = false, className}) => {
     const dispatch = useDispatch();
     const language = useTypedSelector(state => state.language.language);
     const handleChange = async (e: SelectChangeEvent) => {

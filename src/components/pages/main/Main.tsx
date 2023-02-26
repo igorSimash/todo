@@ -25,7 +25,7 @@ const Main: React.FC = () => {
                 </div>
             </MainHeader>
 
-            <MainSection>
+            <MainSection className={'bg-gradient-to-b from-transparent to-lightBlue/50'}>
                 <section className={'h-full flex items-center justify-center'}>
                     <div className={'flex flex-col items-center w-2/5 text-center gap-5'}>
                         <h1 className={'text-6xl font-bold leading-12'}>

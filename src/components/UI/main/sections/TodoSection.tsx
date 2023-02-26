@@ -13,12 +13,12 @@ const TodoSection: React.FC<{ selectedCategory: number }> = ({selectedCategory})
                                      deadline={todo.deadline} priorityId={todo.priority_id}
                                      key={todo.id}/>);
     return (
-        <section className={'h-full shadow-xl w-full px-10 flex flex-col gap-5'}>
+        <section className={'h-full shadow-md w-full px-10 flex flex-col gap-5 py-5'}>
             <div>
                 <h1 className={'font-semibold text-3xl'}>{categoryName} todos</h1>
                 <h2 className={'font-medium'}>{t('total', {ns: 'todos'})}: {todosToRender.length}</h2>
             </div>
-            <div className={'flex flex-col gap-2'}>
+            <div className={'flex flex-col gap-2 overflow-y-auto'}>
                 {todosToRender}
             </div>
         </section>

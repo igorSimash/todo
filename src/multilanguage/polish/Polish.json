@@ -37,7 +37,8 @@
     "allCategory" : "Wszystkie",
     "changePassword": "Zmień hasło",
     "logout": "Wyloguj",
-    "total": "Wszystko"
+    "total": "Wszystko",
+    "categoriesTitle": "Kategorie"
   },
   "forgot_pass": {
     "title": "Nie pamiętasz hasła?",

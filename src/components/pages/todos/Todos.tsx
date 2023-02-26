@@ -23,7 +23,7 @@ const Todos: React.FC = () => {
     }, [error]);
     return (
         <div className={'w-full h-screen'}>
-            <MainHeader>
+            <MainHeader className={'bg-mediumBlue shadow-gray-400 shadow-sm'}>
                 <div className={'flex items-center'}>
                     LOGO TodoIg
                 </div>

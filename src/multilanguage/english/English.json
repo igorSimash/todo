@@ -38,7 +38,8 @@
     "allCategory" : "All",
     "changePassword": "Change password",
     "logout": "Logout",
-    "total": "Total"
+    "total": "Total",
+    "categoriesTitle": "Categories"
   },
   "forgot_pass": {
     "title": "Forgot password?",

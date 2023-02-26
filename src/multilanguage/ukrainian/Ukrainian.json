@@ -37,7 +37,8 @@
     "allCategory" : "Всі",
     "changePassword": "Змінити пароль",
     "logout": "Вийти",
-    "total": "Всього"
+    "total": "Всього",
+    "categoriesTitle": "Категорії"
   },
   "forgot_pass": {
     "title": "Забули пароль?",

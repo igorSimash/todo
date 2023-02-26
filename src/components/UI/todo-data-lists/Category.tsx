@@ -4,8 +4,8 @@ const Category: React.FC<{name: string; onClick?: () => void; className?: string
     return (
         <div
             onClick={onClick}
-            className={`cursor-pointer text-xl font-semibold text-solidBlue rounded-lg py-0.5 px-1 
-                hover:bg-gray-300 transition-all ${className}`}>
+            className={`cursor-pointer text-md rounded-md py-0.5 px-1 
+                hover:bg-lightBlue/60 transition-all ${className}`}>
             {name}
         </div>
     );
