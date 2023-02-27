@@ -24,6 +24,7 @@ function App() {
     }, [isLoading, error]);
 
     if (isLoading) return <LoaderFullScreen/>;
+
     return (
         <div className="App bg-coolWhite w-screen h-screen">
             <Router/>

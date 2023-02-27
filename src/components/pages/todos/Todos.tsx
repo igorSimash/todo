@@ -28,7 +28,7 @@ const Todos: React.FC = () => {
                     LOGO TodoIg
                 </div>
                 <div className={'flex gap-5'}>
-                    <LanguageSelect changeInDB/>
+                    <LanguageSelect changeInDB disableUnderline/>
                     <UserMenuList/>
                 </div>
             </MainHeader>
@@ -40,7 +40,7 @@ const Todos: React.FC = () => {
                     <TodoSection selectedCategory={selectedCategory}/>
                 </MainSection>
                 :
-                <LoaderFullScreen/>
+                <LoaderFullScreen className={'h-[calc(100%-4rem)]'}/>
             }
         </div>
     );

@@ -10,8 +10,17 @@ module.exports = {
         solidBlue: '#0b698b',
         coolWhite: '#f2f2f2',
         mediumBlue: '#0396a6'
-      }
+      },
+      gridTemplateAreas: {
+        'modal': [
+          'header header',
+          'textarea rightSide',
+          'buttons rightSide',
+        ],
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@savvywombat/tailwindcss-grid-areas')
+  ],
 }

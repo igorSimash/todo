@@ -21,7 +21,13 @@ const languages: ({ title: string; value: string })[] = [
     }
 ];
 
-const LanguageSelect: React.FC<{changeInDB?: boolean, className?: string}> = ({changeInDB = false, className}) => {
+interface ILangSelectProps {
+    changeInDB?: boolean;
+    className?: string;
+    disableUnderline?: boolean
+}
+
+const LanguageSelect: React.FC<ILangSelectProps> = ({changeInDB = false, className, disableUnderline}) => {
     const dispatch = useDispatch();
     const language = useTypedSelector(state => state.language.language);
     const handleChange = async (e: SelectChangeEvent) => {
@@ -46,13 +52,15 @@ const LanguageSelect: React.FC<{changeInDB?: boolean, className?: string}> = ({c
                     value={language}
                     label={"Language"}
                     onChange={handleChange}
+                    disableUnderline={disableUnderline}
                 >
                     {
                         languages.map((language, index) =>
                             <MenuItem key={index} value={language.value}>
                                 {language.title}
                             </MenuItem>
-                        )}
+                        )
+                    }
                 </Select>
             </FormControl>
         </div>

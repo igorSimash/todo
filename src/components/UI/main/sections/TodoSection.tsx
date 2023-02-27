@@ -1,7 +1,7 @@
 import React from 'react';
-import TodoItem from "../../todo-data-lists/TodoItem";
 import {useTypedSelector} from "../../../../hooks/useTypedSelect";
 import {useTranslation} from "react-i18next";
+import Todo from "../../todo-data-lists/todo/Todo";
 
 const TodoSection: React.FC<{ selectedCategory: number }> = ({selectedCategory}) => {
     const {t} = useTranslation('todos');
@@ -9,9 +9,7 @@ const TodoSection: React.FC<{ selectedCategory: number }> = ({selectedCategory})
     const categoryName = (categories.find(el => el.id === selectedCategory))?.name || t('allCategory', {ns: 'todos'});
     const todosToRender = todos.filter((todo) => selectedCategory !== -1 ? todo.category_id === selectedCategory : todo)
             .sort((a, b) => a.priority_id - b.priority_id)
-            .map((todo) => <TodoItem title={todo.title} description={todo.description}
-                                     deadline={todo.deadline} priorityId={todo.priority_id}
-                                     key={todo.id}/>);
+            .map((todo) => <Todo todo={todo} key={todo.id}/>);
     return (
         <section className={'h-full shadow-md w-full px-10 flex flex-col gap-5 py-5'}>
             <div>

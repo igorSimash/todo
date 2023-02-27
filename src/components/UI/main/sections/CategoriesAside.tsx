@@ -1,5 +1,5 @@
 import React from 'react';
-import Category from "../../todo-data-lists/Category";
+import Category from "../../todo-data-lists/category/Category";
 import {useTypedSelector} from "../../../../hooks/useTypedSelect";
 import {useTranslation} from "react-i18next";
 
