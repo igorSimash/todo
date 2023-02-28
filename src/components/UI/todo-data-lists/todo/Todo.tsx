@@ -7,6 +7,7 @@ const Todo: React.FC<{todo: ITodo}> = ({todo}) => {
     const [modalOpen, setModalOpen] = useState(false);
     const handleOpen = () => setModalOpen(true);
     const handleClose = () => setModalOpen(false);
+
     return (
         <>
             <TodoItem todo={todo} openModal={handleOpen}/>

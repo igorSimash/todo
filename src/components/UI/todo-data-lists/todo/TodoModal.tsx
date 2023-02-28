@@ -9,6 +9,10 @@ import InputNoBorder from "../../input/InputNoBorder";
 import ItemSelect from "../../select/ItemSelect";
 import {priorities} from "../../../../assets/Priorities";
 import {SelectChangeEvent} from "@mui/material/Select";
+import DateTimeInput from "../../input/DateTimeInput";
+import RoundedButton from "../../button/RoundedButton";
+import {useDispatch} from "react-redux";
+import {fetchTodos} from "../../../../redux/action-creators/fetchTodos";
 
 interface ITodoModal {
     closeModal(): void;
@@ -23,11 +27,14 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
     const {categories} = useTypedSelector(state => state.todos);
     const category = useMemo(() => categories.find(c => c.id === category_id)?.name || 'All', [categories, category_id])
     const priority = useMemo(() => priorities.find(p => p.id === priority_id)?.name, [priority_id]);
+    const deadlineState = deadline?.slice(0, 16) || '';
     const [newTitle, setNewTitle] = useState(title);
     const [newDescription, setNewDescription] = useState(description);
     const [newCategory, setNewCategory] = useState(categories.find(c => c.id === category_id)?.name || 'All');
     const [addCategory, setAddCategory] = useState(false);
     const [newPriority, setNewPriority] = useState(priority);
+    const [newDeadline, setNewDeadline] = useState(deadlineState);
+    const dispatch = useDispatch()
     const handleClose = () => {
         closeModal();
         setNewTitle(title);
@@ -35,14 +42,38 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
         setNewCategory(category);
         setAddCategory(false);
         setNewPriority(priority);
+        setNewDeadline(deadlineState)
     };
+
+    const handleSend = async () => {
+        const data = JSON.stringify({
+            id,
+            title: newTitle,
+            description: newDescription,
+            priority: newPriority,
+            category: newCategory !== 'All' ? newCategory : '',
+            deadline: newDeadline
+        })
+
+        await fetch(process.env.REACT_APP_API_TODO as string,
+            {
+                credentials: 'include',
+                mode: 'cors',
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: data
+            });
+
+        handleClose();
+        dispatch(fetchTodos());
+    }
+
 
     const handleChangeCategory = (e: SelectChangeEvent) => {
         if (e.target.value === 'Add category') {
             setAddCategory(true);
             setNewCategory('');
-        }
-        else {
+        } else {
             setAddCategory(false);
             setNewCategory(e.target.value);
         }
@@ -53,7 +84,8 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
             closeModal={handleClose}
             modalIsOpen={modalIsOpen}>
             <div
-                className={'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-coolWhite rounded-lg outline-0 w-[830px] h-[92%] grid grid-cols-[70%_30%] grid-rows-[3rem_1fr_3rem] grid-areas-modal'}
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-coolWhite rounded-lg outline-0
+                 w-[830px] h-[92%] grid grid-cols-[70%_30%] grid-rows-[3rem_1fr_4rem] grid-areas-modal`}
             >
                 <div className={'grid-in-header flex items-center justify-between border-b-2 px-8'}>
                     <div className={'flex items-center gap-1'}>
@@ -99,7 +131,8 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                             <span className={'text-sm text-black/50 font-medium'}>
                                 Add category
                             </span>
-                            <InputNoBorder className={'border-[1px] mt-2'} value={newCategory} onChange={e => setNewCategory(e.target.value)}/>
+                            <InputNoBorder className={'border-[1px] mt-2'} value={newCategory}
+                                           onChange={e => setNewCategory(e.target.value)}/>
                         </div>
                     }
                     <div className={'border-b-2'}>
@@ -109,10 +142,26 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                         <ItemSelect options={priorities} disableUnderline
                                     item={newPriority} setItem={e => setNewPriority(e.target.value)}/>
                     </div>
+                    <div className={'border-b-2'}>
+                        <span className={'text-sm text-black/50 font-medium '}>
+                            Deadline
+                        </span>
+                        <DateTimeInput value={newDeadline?.slice(0, 16)}
+                                       onChange={e => setNewDeadline(e.target.value)}/>
+                    </div>
 
                 </div>
-                <div className={'grid-in-[buttons]'}>
-
+                <div className={'grid-in-[buttons] flex justify-end items-s gap-4 px-4'}>
+                    <RoundedButton
+                        onClick={handleClose}
+                        className={'bg-gray-300'}>
+                        Cancel
+                    </RoundedButton>
+                    <RoundedButton
+                        className={'bg-mediumBlue'}
+                        onClick={handleSend}>
+                        Edit
+                    </RoundedButton>
                 </div>
             </div>
         </Modal>
