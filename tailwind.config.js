@@ -18,6 +18,9 @@ module.exports = {
           'buttons rightSide',
         ],
       },
+      fontFamily: {
+        classic: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Apple Color Emoji",Helvetica,Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol"'
+      }
     },
   },
   plugins: [

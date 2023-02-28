@@ -14,7 +14,7 @@ const Main: React.FC = () => {
                     LOGO TodoIg
                 </div>
                 <div className={'flex gap-5 items-center'}>
-                    <LanguageSelect/>
+                    <LanguageSelect disableUnderline/>
                     <Link to={'/login'} className={'transition-all hover:opacity-80'}>
                         {t('signInLink', {ns: 'main'})}
                     </Link>

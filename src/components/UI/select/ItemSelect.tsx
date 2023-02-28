@@ -2,7 +2,7 @@ import React from 'react';
 import {FormControl} from "@mui/material";
 import Select, {SelectChangeEvent} from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-
+import AddBoxIcon from '@mui/icons-material/AddBox';
 interface IItemSelect {
     options: {name: string | number; id?: number}[];
     disableUnderline?: boolean;
@@ -10,7 +10,7 @@ interface IItemSelect {
     setItem?(e: SelectChangeEvent): void;
 }
 
-const ItemSelect: React.FC<IItemSelect> = ({disableUnderline, item, setItem, options}) => {
+const ItemSelect: React.FC<IItemSelect> = ({disableUnderline, item, setItem, options, }) => {
     return (
         <div className={''}>
             <FormControl variant="standard" sx={{m: 0.5, width: '95%'}}>
@@ -24,7 +24,8 @@ const ItemSelect: React.FC<IItemSelect> = ({disableUnderline, item, setItem, opt
                 >
                     {
                         options.map((el, index) =>
-                            <MenuItem key={el.id || index} value={el.name}>
+                            <MenuItem key={el.id || index} value={el.name} sx={{display: 'flex', justifyItems: 'center'}}>
+                                {el.id === -1 && <AddBoxIcon sx={{mr: 0.5, opacity: '90%'}}/>}
                                 {el.name}
                             </MenuItem>
                         )

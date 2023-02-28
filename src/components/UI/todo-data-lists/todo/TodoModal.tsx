@@ -8,12 +8,14 @@ import TodoCheckbox from "../../input/TodoCheckbox";
 import InputNoBorder from "../../input/InputNoBorder";
 import ItemSelect from "../../select/ItemSelect";
 import {priorities} from "../../../../assets/Priorities";
+import {SelectChangeEvent} from "@mui/material/Select";
+
 interface ITodoModal {
     closeModal(): void;
+
     modalIsOpen: boolean;
     todo: ITodo;
 }
-
 
 
 const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
@@ -24,13 +26,26 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
     const [newTitle, setNewTitle] = useState(title);
     const [newDescription, setNewDescription] = useState(description);
     const [newCategory, setNewCategory] = useState(categories.find(c => c.id === category_id)?.name || 'All');
+    const [addCategory, setAddCategory] = useState(false);
     const [newPriority, setNewPriority] = useState(priority);
     const handleClose = () => {
         closeModal();
         setNewTitle(title);
         setNewDescription(description);
         setNewCategory(category);
+        setAddCategory(false);
         setNewPriority(priority);
+    };
+
+    const handleChangeCategory = (e: SelectChangeEvent) => {
+        if (e.target.value === 'Add category') {
+            setAddCategory(true);
+            setNewCategory('');
+        }
+        else {
+            setAddCategory(false);
+            setNewCategory(e.target.value);
+        }
     }
 
     return (
@@ -72,16 +87,29 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                         <span className={'text-sm text-black/50 font-medium'}>
                             Category
                         </span>
-                        <ItemSelect options={[{name: 'All', id: 0}].concat(categories)} disableUnderline
-                                    item={newCategory} setItem={e => setNewCategory(e.target.value)}/>
+                        <ItemSelect
+                            options={[{name: 'All', id: 0}].concat(categories).concat({name: 'Add category', id: -1})}
+                            disableUnderline
+                            item={addCategory ? 'Add category' : newCategory} setItem={handleChangeCategory}/>
                     </div>
+                    {
+                        addCategory
+                        &&
+                        <div className={'border-b-2'}>
+                            <span className={'text-sm text-black/50 font-medium'}>
+                                Add category
+                            </span>
+                            <InputNoBorder className={'border-[1px] mt-2'} value={newCategory} onChange={e => setNewCategory(e.target.value)}/>
+                        </div>
+                    }
                     <div className={'border-b-2'}>
-                        <span className={'text-sm text-black/50 font-medium'}>
+                        <span className={'text-sm text-black/50 font-medium '}>
                             Priority
                         </span>
                         <ItemSelect options={priorities} disableUnderline
                                     item={newPriority} setItem={e => setNewPriority(e.target.value)}/>
                     </div>
+
                 </div>
                 <div className={'grid-in-[buttons]'}>
 

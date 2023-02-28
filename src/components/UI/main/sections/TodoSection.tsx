@@ -7,7 +7,7 @@ const TodoSection: React.FC<{ selectedCategory: number }> = ({selectedCategory})
     const {t} = useTranslation('todos');
     const {categories, todos} = useTypedSelector(state => state.todos);
     const categoryName = (categories.find(el => el.id === selectedCategory))?.name || t('allCategory', {ns: 'todos'});
-    const todosToRender = todos.filter((todo) => selectedCategory !== -1 ? todo.category_id === selectedCategory : todo)
+    const todosToRender = todos.filter((todo) => selectedCategory !== 0 ? todo.category_id === selectedCategory : todo)
             .sort((a, b) => a.priority_id - b.priority_id)
             .map((todo) => <Todo todo={todo} key={todo.id}/>);
     return (

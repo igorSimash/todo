@@ -15,7 +15,7 @@ const Todos: React.FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {loading, error} = useTypedSelector(state => state.todos);
-    const [selectedCategory, setSelectedCategory] = useState(-1)
+    const [selectedCategory, setSelectedCategory] = useState(0)
     useEffect(() => {
         dispatch(fetchTodos());
         if (error === 'Session expired')
@@ -23,7 +23,7 @@ const Todos: React.FC = () => {
     }, [error]);
     return (
         <div className={'w-full h-screen'}>
-            <MainHeader className={'bg-mediumBlue shadow-gray-400 shadow-sm'}>
+            <MainHeader className={'bg-lightBlue/30  shadow-sm'}>
                 <div className={'flex items-center'}>
                     LOGO TodoIg
                 </div>
