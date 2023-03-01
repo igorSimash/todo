@@ -31,7 +31,7 @@ const UserMenuList:React.FC = () => {
 
     return (
         <div className={'flex items-center'}>
-            <Avatar onClick={handleClick} className={'cursor-pointer'}/>
+            <Avatar onClick={handleClick} className={'cursor-pointer'} sx={{width: 37, height: 37,}}/>
             <Menu
                 anchorEl={anchorEl}
                 id="account-menu"
