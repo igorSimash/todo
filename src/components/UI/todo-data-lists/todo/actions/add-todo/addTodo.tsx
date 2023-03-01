@@ -12,23 +12,21 @@ import RoundedButton from "../../../../button/RoundedButton";
 import {fetchTodos} from "../../../../../../redux/action-creators/fetchTodos";
 import {useDispatch} from "react-redux";
 
-const AddTodo: React.FC = () => {
+const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCategory}) => {
     const [addTodoOpen, setAddTodoOpen] = useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [category, setCategory] = useState('All');
+    const [category, setCategory] = useState(selectedCategory || 'All');
     const [addCategory, setAddCategory] = useState(false);
     const [priority, setPriority] = useState(3);
     const [deadline, setDeadline] = useState('');
     const {categories} = useTypedSelector(state => state.todos);
     const dispatch = useDispatch();
-
-
     const handleClose = () => {
         setAddTodoOpen(false);
         setTitle('');
         setDescription('');
-        setCategory('All');
+        setCategory(selectedCategory || 'All');
         setAddCategory(false);
         setPriority(3);
         setDeadline('')
@@ -96,7 +94,7 @@ const AddTodo: React.FC = () => {
                             <ItemSelect
                                 options={[{name: 'All', id: 0}].concat(categories).concat({name: 'Add category',id: -1})}
                                 disableUnderline className={'border-2 rounded-lg w-[160px]'}
-                                item={addCategory ? 'Add category' : category} setItem={handleChangeCategory}/>
+                                item={addCategory ? 'Add category' : selectedCategory || 'All'} setItem={handleChangeCategory}/>
                             {
                                 addCategory
                                 &&

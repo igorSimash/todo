@@ -15,7 +15,7 @@ const TodoSection: React.FC<{ selectedCategory: number }> = ({selectedCategory})
         .filter((todo) => {
             if (selectedCategory === 0) return !todo.completed;
             else if (selectedCategory === -1) return todo.completed;
-            else return todo.category_id === selectedCategory
+            else return todo.category_id === selectedCategory && !todo.completed
         })
         .sort((a, b) => a.priority_id - b.priority_id)
         .map((todo) =>
@@ -30,7 +30,7 @@ const TodoSection: React.FC<{ selectedCategory: number }> = ({selectedCategory})
                     <h2 className={'font-medium'}>{t('total', {ns: 'todos'})}: {todosToRender.length}</h2>
                 </div>
                 <div className={'flex w-full flex-col gap-3 pb-40'}>
-                    <AddTodo/>
+                    {selectedCategory !== -1 && <AddTodo selectedCategory={(categories.find(c => c.id === selectedCategory)?.name)}/>}
                     {todosToRender}
                 </div>
             </div>
