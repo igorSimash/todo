@@ -1,25 +1,22 @@
 import React from 'react';
 
 interface ITextInput {
-    label: string;
-    id: string;
+    className?: string;
+    value?: string | null;
+
+    onChange?(e: React.ChangeEvent<HTMLInputElement>): void;
+
+    placeholder?: string;
 }
 
-const TextInput: React.FC<ITextInput> = ({label,id}) => {
+const TextInput: React.FC<ITextInput> = ({onChange, placeholder, value, className}) => {
     return (
-        <div className={'flex flex-col w-full'}>
-            <label
-                htmlFor={id}
-                className={'font-semibold'}
-            >
-                {label}
-            </label>
-            <input
-                type="text"
-                   id={id}
-                className={'border-black border-b-2 h-10 w-full'}
-            />
-        </div>
+        <input
+            placeholder={placeholder}
+            className={`bg-transparent border-black/70 resize-none rounded-md py-0.5 px-1.5 ${className}`}
+            value={value || ''}
+            onChange={onChange}
+        />
     );
 };
 

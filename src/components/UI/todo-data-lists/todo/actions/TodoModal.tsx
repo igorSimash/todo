@@ -34,7 +34,7 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
     const [addCategory, setAddCategory] = useState(false);
     const [newPriority, setNewPriority] = useState(priority);
     const [newDeadline, setNewDeadline] = useState(deadlineState);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const handleClose = () => {
         closeModal();
         setNewTitle(title);
@@ -139,7 +139,8 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                         <span className={'text-sm text-black/50 font-medium '}>
                             Priority
                         </span>
-                        <ItemSelect options={priorities} disableUnderline
+                        <ItemSelect
+                            options={priorities} disableUnderline
                                     item={newPriority} setItem={e => setNewPriority(e.target.value)}/>
                     </div>
                     <div className={'border-b-2'}>
@@ -149,6 +150,7 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                         <DateTimeInput value={newDeadline?.slice(0, 16)}
                                        onChange={e => setNewDeadline(e.target.value)}
                                         className={'w-full'}/>
+
                     </div>
 
                 </div>

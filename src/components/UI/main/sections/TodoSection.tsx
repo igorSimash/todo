@@ -22,6 +22,7 @@ const TodoSection: React.FC<{ selectedCategory: number }> = ({selectedCategory})
                     <AddTodo/>
                     {todosToRender}
                 </div>
+
             </div>
         </section>
     );

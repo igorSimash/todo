@@ -8,11 +8,12 @@ interface IItemSelect {
     disableUnderline?: boolean;
     item?: string;
     setItem?(e: SelectChangeEvent): void;
+    className?: string;
 }
 
-const ItemSelect: React.FC<IItemSelect> = ({disableUnderline, item, setItem, options, }) => {
+const ItemSelect: React.FC<IItemSelect> = ({disableUnderline, item, setItem, options, className}) => {
     return (
-        <div className={''}>
+        <div className={className}>
             <FormControl variant="standard" sx={{m: 0.5, width: '95%'}}>
                 <Select
                     labelId="demo-simple-select-standard-label"
