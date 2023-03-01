@@ -24,10 +24,11 @@ const languages: ({ title: string; value: string })[] = [
 interface ILangSelectProps {
     changeInDB?: boolean;
     className?: string;
-    disableUnderline?: boolean
+    disableUnderline?: boolean;
+    textAlign?: string;
 }
 
-const LanguageSelect: React.FC<ILangSelectProps> = ({changeInDB = false, className, disableUnderline}) => {
+const LanguageSelect: React.FC<ILangSelectProps> = ({changeInDB = false, className, disableUnderline, textAlign = 'start'}) => {
     const dispatch = useDispatch();
     const language = useTypedSelector(state => state.language.language);
     const handleChange = async (e: SelectChangeEvent) => {
@@ -42,9 +43,10 @@ const LanguageSelect: React.FC<ILangSelectProps> = ({changeInDB = false, classNa
             });
         }
     };
+
     return (
         <div className={'flex items-center'}>
-            <FormControl className={'focus:bg-white'} variant="standard" sx={{m: 1, width: 145, textAlign: 'end'}}>
+            <FormControl className={'focus:bg-white'} variant="standard" sx={{m: 1, width: 145, textAlign}}>
                 <Select
                     labelId="demo-simple-select-standard-label"
                     id="demo-simple-select-standard"

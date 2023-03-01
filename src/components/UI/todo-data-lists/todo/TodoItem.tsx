@@ -5,30 +5,32 @@ import {ITodo} from "../../../../types/reducer/todo";
 
 interface ITodoItem {
     todo: ITodo;
+
     openModal(): void;
 
 }
+
 const TodoItem: React.FC<ITodoItem> = ({todo, openModal}) => {
-    const {id, deadline, title, description, priority_id, category_id} = todo;
+    const {deadline, title, description, priority_id} = todo;
 
     return (
         <div
-            className={`flex w-1/2 pb-1 rounded-lg cursor-pointer ${deadline && new Date(deadline) < new Date() && ''}`}
+            className={`flex  cursor-pointer border-b-2 pb-3 ${deadline && new Date(deadline) < new Date() && ''}`}
         >
             <TodoCheckbox priorityId={priority_id}/>
             <div
-                className={'flex flex-col justify-center'}
-                 onClick={openModal}
+                className={'flex flex-col justify-center w-2/3'}
+                onClick={openModal}
             >
-                <span className={'text-md'}>
+                <span className={'text-md w-fit'}>
                     {title}
                 </span>
                 {description &&
-                    <span className={'text-xs text-gray-500'}>
-                    {description}
-                    </span>}
+                    <div className={'text-xs text-gray-500 text-ellipsis whitespace-nowrap overflow-hidden'}>
+                        {description}
+                    </div>}
                 {deadline &&
-                    <div className={'flex gap-1 items-center'}>
+                    <div className={'flex gap-1 items-center w-fit'}>
                         <CalendarMonthIcon sx={{fontSize: 'small', color: '#6b7280'}}/>
                         <span
                             className={`text-xs ${new Date(deadline) < new Date() ? 'text-black font-bold animate-pulse' : 'text-gray-500'}`}>

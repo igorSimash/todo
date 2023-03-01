@@ -1,0 +1,7 @@
+.addTodoContainer:hover > .addTodoIcon {
+    @apply bg-mediumBlue text-coolWhite
+}
+
+.addTodoContainer:hover > .addTodoSpan {
+    @apply text-mediumBlue
+}

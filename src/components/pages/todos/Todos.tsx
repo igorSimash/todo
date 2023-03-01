@@ -23,12 +23,12 @@ const Todos: React.FC = () => {
     }, [error]);
     return (
         <div className={'w-full h-screen'}>
-            <MainHeader className={'bg-lightBlue/30  shadow-sm'}>
+            <MainHeader className={'bg-lightBlue/30 shadow-sm'}>
                 <div className={'flex items-center'}>
                     LOGO TodoIg
                 </div>
                 <div className={'flex gap-5'}>
-                    <LanguageSelect changeInDB disableUnderline/>
+                    <LanguageSelect changeInDB disableUnderline textAlign={'end'}/>
                     <UserMenuList/>
                 </div>
             </MainHeader>

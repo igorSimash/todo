@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import TodoModal from "./TodoModal";
+import TodoModal from "./actions/TodoModal";
 import TodoItem from "./TodoItem";
 import {ITodo} from "../../../../types/reducer/todo";
 

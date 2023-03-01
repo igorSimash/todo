@@ -68,7 +68,7 @@ const UserMenuList:React.FC = () => {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
                 <MenuItem onClick={handleClose}>
-                    <Avatar /> My account
+                    <Avatar/> My account
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={() => navigate('/todos/change-pass')}>

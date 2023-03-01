@@ -1,18 +1,18 @@
 import React, {useMemo, useState} from 'react';
-import Modal from "../../modal/Modal";
-import {ITodo} from "../../../../types/reducer/todo";
-import {useTypedSelector} from "../../../../hooks/useTypedSelect";
+import Modal from "../../../modal/Modal";
+import {ITodo} from "../../../../../types/reducer/todo";
+import {useTypedSelector} from "../../../../../hooks/useTypedSelect";
 import ClassIcon from '@mui/icons-material/Class';
 import ClearIcon from '@mui/icons-material/Clear';
-import TodoCheckbox from "../../input/TodoCheckbox";
-import InputNoBorder from "../../input/InputNoBorder";
-import ItemSelect from "../../select/ItemSelect";
-import {priorities} from "../../../../assets/Priorities";
+import TodoCheckbox from "../../../input/TodoCheckbox";
+import InputNoBorder from "../../../input/InputNoBorder";
+import ItemSelect from "../../../select/ItemSelect";
+import {priorities} from "../../../../../assets/Priorities";
 import {SelectChangeEvent} from "@mui/material/Select";
-import DateTimeInput from "../../input/DateTimeInput";
-import RoundedButton from "../../button/RoundedButton";
+import DateTimeInput from "../../../input/DateTimeInput";
+import RoundedButton from "../../../button/RoundedButton";
 import {useDispatch} from "react-redux";
-import {fetchTodos} from "../../../../redux/action-creators/fetchTodos";
+import {fetchTodos} from "../../../../../redux/action-creators/fetchTodos";
 
 interface ITodoModal {
     closeModal(): void;
@@ -147,7 +147,8 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                             Deadline
                         </span>
                         <DateTimeInput value={newDeadline?.slice(0, 16)}
-                                       onChange={e => setNewDeadline(e.target.value)}/>
+                                       onChange={e => setNewDeadline(e.target.value)}
+                                        className={'w-full'}/>
                     </div>
 
                 </div>

@@ -9,8 +9,8 @@ const CategoriesAside: React.FC<{selectedCategory: number; setSelectedCategory: 
     const categoriesToRender = [...categories];
     categoriesToRender.unshift({id: 0, name: t('allCategory', {ns: 'todos'})});
     return (
-        <aside className={'h-full w-64 py-5'}>
-            <div className={'flex flex-col gap-2 mx-6 h-full '}>
+        <aside className={'h-full w-64'}>
+            <div className={'flex flex-col gap-2 mx-6 h-full py-8'}>
                 <span className={'text-xl font-semibold'}>{t('categoriesTitle', {ns: 'todos'})}</span>
                 <div className={'flex flex-col gap-0.5 overflow-y-auto'}>
                     {categoriesToRender.map((el) =>
