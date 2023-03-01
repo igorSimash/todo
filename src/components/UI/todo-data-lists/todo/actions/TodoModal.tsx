@@ -26,13 +26,12 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
     const {id, deadline, title, description, priority_id, category_id} = todo;
     const {categories} = useTypedSelector(state => state.todos);
     const category = useMemo(() => categories.find(c => c.id === category_id)?.name || 'All', [categories, category_id])
-    const priority = useMemo(() => priorities.find(p => p.id === priority_id)?.name, [priority_id]);
     const deadlineState = deadline?.slice(0, 16) || '';
     const [newTitle, setNewTitle] = useState(title);
     const [newDescription, setNewDescription] = useState(description);
     const [newCategory, setNewCategory] = useState(categories.find(c => c.id === category_id)?.name || 'All');
     const [addCategory, setAddCategory] = useState(false);
-    const [newPriority, setNewPriority] = useState(priority);
+    const [newPriorityId, setNewPriorityId] = useState(priority_id);
     const [newDeadline, setNewDeadline] = useState(deadlineState);
     const dispatch = useDispatch();
     const handleClose = () => {
@@ -41,7 +40,7 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
         setNewDescription(description);
         setNewCategory(category);
         setAddCategory(false);
-        setNewPriority(priority);
+        setNewPriorityId(priority_id);
         setNewDeadline(deadlineState)
     };
 
@@ -50,7 +49,7 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
             id,
             title: newTitle,
             description: newDescription,
-            priority: newPriority,
+            priorityId: newPriorityId,
             category: newCategory !== 'All' ? newCategory : '',
             deadline: newDeadline
         })
@@ -141,7 +140,8 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                         </span>
                         <ItemSelect
                             options={priorities} disableUnderline
-                                    item={newPriority} setItem={e => setNewPriority(e.target.value)}/>
+                            item={(priorities.find(pr => pr.id === newPriorityId)!.name)}
+                            setItem={e => setNewPriorityId((priorities.find(pr => pr.name === e.target.value))!.id)}/>
                     </div>
                     <div className={'border-b-2'}>
                         <span className={'text-sm text-black/50 font-medium '}>
