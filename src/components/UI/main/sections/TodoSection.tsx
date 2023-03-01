@@ -8,9 +8,20 @@ const TodoSection: React.FC<{ selectedCategory: number }> = ({selectedCategory})
     const {t} = useTranslation('todos');
     const {categories, todos} = useTypedSelector(state => state.todos);
     const categoryName = (categories.find(el => el.id === selectedCategory))?.name || t('allCategory', {ns: 'todos'});
-    const todosToRender = todos.filter((todo) => selectedCategory !== 0 ? todo.category_id === selectedCategory : todo)
+
+    // cat 0 -> all uncompleted; cat -1 -> all completed; else -> category uncompleted
+
+    const todosToRender = todos
+        .filter((todo) => {
+            if (selectedCategory === 0) return !todo.completed;
+            else if (selectedCategory === -1) return todo.completed;
+            else return todo.category_id === selectedCategory
+        })
         .sort((a, b) => a.priority_id - b.priority_id)
-        .map((todo) => <Todo todo={todo} key={todo.id}/>);
+        .map((todo) =>
+            <Todo todo={todo} key={todo.id}/>);
+
+
     return (
         <section className={'h-full shadow-md w-full flex justify-center overflow-y-auto'}>
             <div className={'flex flex-col gap-5 px-10 py-8 w-[840px]'}>
@@ -22,7 +33,6 @@ const TodoSection: React.FC<{ selectedCategory: number }> = ({selectedCategory})
                     <AddTodo/>
                     {todosToRender}
                 </div>
-
             </div>
         </section>
     );

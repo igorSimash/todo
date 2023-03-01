@@ -13,6 +13,7 @@ import DateTimeInput from "../../../input/DateTimeInput";
 import RoundedButton from "../../../button/RoundedButton";
 import {useDispatch} from "react-redux";
 import {fetchTodos} from "../../../../../redux/action-creators/fetchTodos";
+import TextInput from "../../../input/TextInput";
 
 interface ITodoModal {
     closeModal(): void;
@@ -23,7 +24,7 @@ interface ITodoModal {
 
 
 const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
-    const {id, deadline, title, description, priority_id, category_id} = todo;
+    const {id, deadline, title, description, priority_id, category_id, completed} = todo;
     const {categories} = useTypedSelector(state => state.todos);
     const category = useMemo(() => categories.find(c => c.id === category_id)?.name || 'All', [categories, category_id])
     const deadlineState = deadline?.slice(0, 16) || '';
@@ -76,7 +77,19 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
             setAddCategory(false);
             setNewCategory(e.target.value);
         }
-    }
+    };
+
+    const handleCompleteTodo = async () => {
+        await fetch(process.env.REACT_APP_API_TODO_COMPLETE as string, {
+            credentials: 'include',
+            mode: 'cors',
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({id})
+        });
+        handleClose();
+        dispatch(fetchTodos());
+    };
 
     return (
         <Modal
@@ -101,12 +114,12 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                 <div className={'p-4 grid-in-[textarea]'}>
                     <div className={'flex h-full'}>
                         <div>
-                            <TodoCheckbox priorityId={priority_id}/>
+                            <TodoCheckbox priorityId={priority_id} onClick={handleCompleteTodo} checked={!!completed}/>
                         </div>
                         <div className={'flex flex-col gap-2 mt-1 h-full w-full'}>
-                            <InputNoBorder value={newTitle} className={'font-bold text-lg h-9'}
+                            <TextInput value={newTitle} className={'font-bold text-lg h-9 border-black/70 focus:border-[1px]'}
                                            onChange={e => setNewTitle(e.target.value)} placeholder={'Title'}/>
-                            <InputNoBorder value={newDescription} className={'h-full'}
+                            <InputNoBorder value={newDescription} className={'h-full '}
                                            onChange={e => setNewDescription(e.target.value)}
                                            placeholder={'Description'}/>
                         </div>

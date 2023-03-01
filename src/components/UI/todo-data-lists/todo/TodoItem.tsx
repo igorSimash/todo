@@ -2,6 +2,8 @@ import React from 'react';
 import TodoCheckbox from "../../input/TodoCheckbox";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import {ITodo} from "../../../../types/reducer/todo";
+import {fetchTodos} from "../../../../redux/action-creators/fetchTodos";
+import {useDispatch} from "react-redux";
 
 interface ITodoItem {
     todo: ITodo;
@@ -11,13 +13,25 @@ interface ITodoItem {
 }
 
 const TodoItem: React.FC<ITodoItem> = ({todo, openModal}) => {
-    const {deadline, title, description, priority_id} = todo;
+    const {id, deadline, title, description, priority_id, completed} = todo;
+    const dispatch = useDispatch();
+    const handleCompleteTodo = async () => {
+        await fetch(process.env.REACT_APP_API_TODO_COMPLETE as string, {
+            credentials: 'include',
+            mode: 'cors',
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({id})
+        });
+        dispatch(fetchTodos());
+
+    };
 
     return (
         <div
             className={`flex  cursor-pointer border-b-2 pb-3 ${deadline && new Date(deadline) < new Date() && ''}`}
         >
-            <TodoCheckbox priorityId={priority_id}/>
+            <TodoCheckbox priorityId={priority_id} onClick={handleCompleteTodo} checked={!!completed}/>
             <div
                 className={'flex flex-col justify-center w-2/3'}
                 onClick={openModal}
