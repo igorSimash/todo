@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import AddIcon from "@mui/icons-material/Add";
 import './addTodo.css';
 import InputNoBorder from "../../../../input/InputNoBorder";
@@ -22,7 +22,8 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
     const [deadline, setDeadline] = useState('');
     const {categories} = useTypedSelector(state => state.todos);
     const dispatch = useDispatch();
-    const handleClose = () => {
+    const categoryValue = useMemo(() => addCategory ? 'Add category' : selectedCategory ?? category, [addCategory, category, selectedCategory]);
+    const handleClose = useCallback(() => {
         setAddTodoOpen(false);
         setTitle('');
         setDescription('');
@@ -30,7 +31,9 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
         setAddCategory(false);
         setPriority(3);
         setDeadline('')
-    };
+    }, [selectedCategory]);
+    
+    useEffect(handleClose, [handleClose, selectedCategory])
 
     const handleChangeCategory = (e: SelectChangeEvent) => {
         if (e.target.value === 'Add category') {
@@ -94,7 +97,7 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
                             <ItemSelect
                                 options={[{name: 'All', id: 0}].concat(categories).concat({name: 'Add category',id: -1})}
                                 disableUnderline className={'border-2 rounded-lg w-[160px]'}
-                                item={addCategory ? 'Add category' : selectedCategory || 'All'} setItem={handleChangeCategory}/>
+                                item={categoryValue} setItem={handleChangeCategory}/>
                             {
                                 addCategory
                                 &&
