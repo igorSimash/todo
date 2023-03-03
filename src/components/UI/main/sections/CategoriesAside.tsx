@@ -6,7 +6,7 @@ import {useTranslation} from "react-i18next";
 const CategoriesAside: React.FC<{selectedCategory: number; setSelectedCategory: (id: number) => void}> = ({selectedCategory, setSelectedCategory}) => {
     const {t} = useTranslation('todos');
     const {categories} = useTypedSelector(state => state.todos);
-    const categoriesToRender = [{id: 0, name: t('allCategory', {ns: 'todos'})}].concat([...categories]).concat([{id: -1, name: 'Completed'}]);
+    const categoriesToRender = [{id: 0, name: t('allCategory', {ns: 'todos'})}].concat([...categories]).concat([{id: -1, name: t('completedCategory', {ns: 'todos'})}]);
     return (
         <aside className={'h-full w-64'}>
             <div className={'flex flex-col gap-2 mx-6 h-full py-8'}>

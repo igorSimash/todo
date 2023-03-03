@@ -1,3 +1,7 @@
+import {useTranslation} from "react-i18next";
+
+const {t} = useTranslation(['todos', 'todosAddTodo']);
+
 export const priorities = [
     {
         id: 1,

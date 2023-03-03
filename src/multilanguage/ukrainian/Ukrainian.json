@@ -35,10 +35,22 @@
   },
   "todos": {
     "allCategory" : "Всі",
+    "completedCategory": "Виконані",
     "changePassword": "Змінити пароль",
     "logout": "Вийти",
     "total": "Всього",
-    "categoriesTitle": "Категорії"
+    "categoriesTitle": "Категорії",
+    "addTodo": "Додати завдання",
+    "addTodoSection": {
+      "title": "Назва",
+      "description": "Опис",
+      "addCategory": "Додати категорію"
+    },
+    "priorities": {
+      "important": "Важливий пріоритет",
+      "medium": "Середній пріоритет",
+      "noPriority": "Без пріоритету"
+    }
   },
   "forgot_pass": {
     "title": "Забули пароль?",

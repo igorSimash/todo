@@ -11,23 +11,25 @@ import TextInput from "../../../../input/TextInput";
 import RoundedButton from "../../../../button/RoundedButton";
 import {fetchTodos} from "../../../../../../redux/action-creators/fetchTodos";
 import {useDispatch} from "react-redux";
+import {useTranslation} from "react-i18next";
 
 const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCategory}) => {
+    const {t} = useTranslation(['todos', 'todosAddTodo']);
     const [addTodoOpen, setAddTodoOpen] = useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [category, setCategory] = useState(selectedCategory || 'All');
+    const [category, setCategory] = useState(selectedCategory || t('allCategory', {ns: 'todos'})!);
     const [addCategory, setAddCategory] = useState(false);
     const [priority, setPriority] = useState(3);
     const [deadline, setDeadline] = useState('');
     const {categories} = useTypedSelector(state => state.todos);
     const dispatch = useDispatch();
-    const categoryValue = useMemo(() => addCategory ? 'Add category' : selectedCategory ?? category, [addCategory, category, selectedCategory]);
+    const categoryValue = useMemo(() => addCategory ? t('addCategory', {ns: 'todosAddTodo'})! : selectedCategory ?? category, [addCategory, category, selectedCategory]);
     const handleClose = useCallback(() => {
         setAddTodoOpen(false);
         setTitle('');
         setDescription('');
-        setCategory(selectedCategory || 'All');
+        setCategory(selectedCategory || t('allCategory', {ns: 'todos'})!);
         setAddCategory(false);
         setPriority(3);
         setDeadline('')
@@ -36,7 +38,7 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
     useEffect(handleClose, [handleClose, selectedCategory])
 
     const handleChangeCategory = (e: SelectChangeEvent) => {
-        if (e.target.value === 'Add category') {
+        if (e.target.value === t('addCategory', {ns: 'todosAddTodo'})) {
             setAddCategory(true);
             setCategory('');
         } else {
@@ -50,7 +52,7 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
             title: title,
             description: description,
             priorityId: priority,
-            category: category !== 'All' ? category : '',
+            category: category !== t('allCategory', {ns: 'todos'}) ? category : '',
             deadline: deadline
         })
 
@@ -76,13 +78,13 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
                     className={'flex items-end pl-2 cursor-pointer font-medium gap-2 addTodoContainer'}
                 >
                     <AddIcon className={'rounded-full addTodoIcon text-mediumBlue'}/>
-                    <span className={'text-gray-600/90 addTodoSpan'}>Add todo</span>
+                    <span className={'text-gray-600/90 addTodoSpan'}>{t('addTodo', {ns: 'todos'})}</span>
                 </div>
                 :
                 <div className={'border-2 rounded-lg p-3'}>
-                    <InputNoBorder className={'h-auto font-medium'} placeholder={'Title'} value={title}
+                    <InputNoBorder className={'h-auto font-medium'} placeholder={t('title', {ns: 'todosAddTodo'})!} value={title}
                                    onChange={e => setTitle(e.target.value)}/>
-                    <InputNoBorder className={'resize-y h-24'} placeholder={'Description'} value={description}
+                    <InputNoBorder className={'resize-y h-24'} placeholder={t('description', {ns: 'todosAddTodo'})!} value={description}
                                    onChange={e => setDescription(e.target.value)}/>
                     <div className={'flex gap-3 border-b-2 py-2'}>
                         <DateTimeInput className={'border-2 rounded-lg py-1'}
@@ -95,7 +97,7 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
                     <div className={'py-2 flex justify-between'}>
                         <div className={'flex items-center gap-2'}>
                             <ItemSelect
-                                options={[{name: 'All', id: 0}].concat(categories).concat({name: 'Add category',id: -1})}
+                                options={[{name: t('allCategory', {ns: 'todos'}), id: 0}].concat(categories).concat({name: t('addCategory', {ns: 'todosAddTodo'}) ,id: -1})}
                                 disableUnderline className={'border-2 rounded-lg w-[160px]'}
                                 item={categoryValue} setItem={handleChangeCategory}/>
                             {

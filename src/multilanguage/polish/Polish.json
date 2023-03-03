@@ -35,10 +35,22 @@
   },
   "todos": {
     "allCategory" : "Wszystkie",
+    "completedCategory": "Zakończony",
     "changePassword": "Zmień hasło",
     "logout": "Wyloguj",
     "total": "Wszystko",
-    "categoriesTitle": "Kategorie"
+    "categoriesTitle": "Kategorie",
+    "addTodo": "Dodaj do zrobienia",
+    "addTodoSection": {
+      "title": "Tytuł",
+      "description": "Opis",
+      "addCategory": "Dodaj kategorię"
+    },
+    "priorities": {
+      "important": "Ważny priorytet",
+      "medium": "Średni priorytet",
+      "noPriority": "Brak priorytetu"
+    }
   },
   "forgot_pass": {
     "title": "Nie pamiętasz hasła?",
