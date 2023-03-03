@@ -17,7 +17,6 @@ import TextInput from "../../../input/TextInput";
 
 interface ITodoModal {
     closeModal(): void;
-
     modalIsOpen: boolean;
     todo: ITodo;
 }

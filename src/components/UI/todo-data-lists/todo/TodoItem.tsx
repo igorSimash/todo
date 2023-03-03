@@ -74,7 +74,13 @@ const TodoItem: React.FC<ITodoItem> = ({todo, openModal}) => {
                     onClick={() => setWantToDelete(true)}
                 />
             </div>
-            <DeleteDialog onClose={() => setWantToDelete(false)} onDelete={handleDelete} isOpen={wantToDelete} itemName={title}/>
+            <DeleteDialog onClose={() => setWantToDelete(false)} onDelete={handleDelete} isOpen={wantToDelete} itemName={title}>
+                <div>
+                    Are you sure you want to delete todo
+                    <span className={'font-bold'}> "{title}" </span>
+                    ?
+                </div>
+            </DeleteDialog>
         </div>
     );
 };

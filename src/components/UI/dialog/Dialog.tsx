@@ -13,7 +13,6 @@ const Dialog:React.FC<IDialog> = ({children, isOpen, onClose}) => {
             onClose={onClose}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
-            className={'bg-none'}
         >
             {children}
         </MUIDialog>
