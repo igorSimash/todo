@@ -17,6 +17,7 @@ const CategoriesAside: React.FC<{selectedCategory: number; setSelectedCategory: 
                             className={`${el.id === selectedCategory && 'bg-lightBlue/60'} ${[0,-1].includes(el.id) && 'font-bold'}`}
                             name={el.name}
                             key={el.id}
+                            deletable={![0,-1].includes(el.id)}
                             onClick={() => setSelectedCategory(el.id)}/>)
                     }
                 </div>

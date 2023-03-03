@@ -5,7 +5,7 @@ import {ITodo} from "../../../../types/reducer/todo";
 import {fetchTodos} from "../../../../redux/action-creators/fetchTodos";
 import {useDispatch} from "react-redux";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import DeleteDialog from "../../dialog/DeleteDialog";
+import DeleteDialog from "../../dialog/delete-dialog/DeleteDialog";
 
 interface ITodoItem {
     todo: ITodo;
@@ -74,7 +74,7 @@ const TodoItem: React.FC<ITodoItem> = ({todo, openModal}) => {
                     onClick={() => setWantToDelete(true)}
                 />
             </div>
-            <DeleteDialog onClose={() => setWantToDelete(false)} onDelete={handleDelete} isOpen={wantToDelete} itemName={title}>
+            <DeleteDialog onClose={() => setWantToDelete(false)} onDelete={handleDelete} isOpen={wantToDelete}>
                 <div>
                     Are you sure you want to delete todo
                     <span className={'font-bold'}> "{title}" </span>

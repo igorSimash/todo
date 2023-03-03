@@ -1,14 +1,13 @@
 import React from 'react';
-import Dialog from "./Dialog";
+import Dialog from "../Dialog";
 import InfoIcon from '@mui/icons-material/Info';
 import ClearIcon from '@mui/icons-material/Clear';
-import RoundedButton from "../button/RoundedButton";
+import RoundedButton from "../../button/RoundedButton";
 
 interface IDeleteDialog {
     onClose(): void;
     onDelete?(): void;
     isOpen: boolean;
-    itemName?: string;
     children?: React.ReactElement;
 }
 
