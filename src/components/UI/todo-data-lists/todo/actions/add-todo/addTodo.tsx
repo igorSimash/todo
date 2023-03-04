@@ -99,9 +99,9 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
                 </div>
                 :
                 <div className={'border-2 rounded-lg p-3'}>
-                    <InputNoBorder className={'h-auto font-medium'} placeholder={t('title', {ns: 'todosAddTodo'})!} value={title}
+                    <InputNoBorder className={'h-auto font-medium'} placeholder={t('title', {ns: 'todoSections'})!} value={title}
                                    onChange={e => setTitle(e.target.value)}/>
-                    <InputNoBorder className={'resize-y h-24'} placeholder={t('description', {ns: 'todosAddTodo'})!} value={description}
+                    <InputNoBorder className={'resize-y h-24'} placeholder={t('description', {ns: 'todoSections'})!} value={description}
                                    onChange={e => setDescription(e.target.value)}/>
                     <div className={'flex gap-3 border-b-2 py-2'}>
                         <DateTimeInput className={'border-2 rounded-lg py-1'}
