@@ -3,8 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import './addTodo.css';
 import InputNoBorder from "../../../../input/InputNoBorder";
 import DateTimeInput from "../../../../input/DateTimeInput";
-import {priorities} from "../../../../../../assets/Priorities";
-import ItemSelect from "../../../../select/ItemSelect";
+import ItemSelect from "../../../../select/item-select/ItemSelect";
 import {useTypedSelector} from "../../../../../../hooks/useTypedSelect";
 import {SelectChangeEvent} from "@mui/material/Select";
 import TextInput from "../../../../input/TextInput";
@@ -14,7 +13,7 @@ import {useDispatch} from "react-redux";
 import {useTranslation} from "react-i18next";
 
 const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCategory}) => {
-    const {t} = useTranslation(['todos', 'todosAddTodo']);
+    const {t} = useTranslation(['todos', 'todoSections', 'todoPriorities']);
     const [addTodoOpen, setAddTodoOpen] = useState(false);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -24,7 +23,23 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
     const [deadline, setDeadline] = useState('');
     const {categories} = useTypedSelector(state => state.todos);
     const dispatch = useDispatch();
-    const categoryValue = useMemo(() => addCategory ? t('addCategory', {ns: 'todosAddTodo'})! : selectedCategory ?? category, [addCategory, category, selectedCategory]);
+    const categoryValue = useMemo(() => addCategory ? t('addCategory', {ns: 'todoSections'})! : selectedCategory ?? category, [addCategory, category, selectedCategory]);
+
+    const priorities = [
+        {
+            id: 1,
+            name: t('important', {ns: 'todoPriorities'})
+        },
+        {
+            id: 2,
+            name: t('medium', {ns: 'todoPriorities'})
+        },
+        {
+            id: 3,
+            name: t('noPriority', {ns: 'todoPriorities'})
+        }
+    ];
+
     const handleClose = useCallback(() => {
         setAddTodoOpen(false);
         setTitle('');
@@ -33,12 +48,12 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
         setAddCategory(false);
         setPriority(3);
         setDeadline('')
-    }, [selectedCategory]);
+    }, [selectedCategory, t]);
     
-    useEffect(handleClose, [handleClose, selectedCategory])
+    useEffect(handleClose, [handleClose, selectedCategory]);
 
     const handleChangeCategory = (e: SelectChangeEvent) => {
-        if (e.target.value === t('addCategory', {ns: 'todosAddTodo'})) {
+        if (e.target.value === t('addCategory', {ns: 'todoSections'})) {
             setAddCategory(true);
             setCategory('');
         } else {
@@ -47,6 +62,8 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
         }
     };
 
+
+
     const handleSend = async () => {
         const data = JSON.stringify({
             title: title,
@@ -54,7 +71,7 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
             priorityId: priority,
             category: category !== t('allCategory', {ns: 'todos'}) ? category : '',
             deadline: deadline
-        })
+        });
 
         await fetch(process.env.REACT_APP_API_TODO as string,
             {
@@ -67,7 +84,7 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
 
         handleClose();
         dispatch(fetchTodos());
-    }
+    };
 
     return (
         <>
@@ -97,13 +114,13 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
                     <div className={'py-2 flex justify-between'}>
                         <div className={'flex items-center gap-2'}>
                             <ItemSelect
-                                options={[{name: t('allCategory', {ns: 'todos'}), id: 0}].concat(categories).concat({name: t('addCategory', {ns: 'todosAddTodo'}) ,id: -1})}
+                                options={[{name: t('allCategory', {ns: 'todos'}), id: 0}].concat(categories).concat({name: t('addCategory', {ns: 'todoSections'}) ,id: -1})}
                                 disableUnderline className={'border-2 rounded-lg w-[160px]'}
                                 item={categoryValue} setItem={handleChangeCategory}/>
                             {
                                 addCategory
                                 &&
-                                <TextInput className={'border-[#e5e7eb] border-2 rounded-lg py-[8px]'} placeholder={'Add category'} value={category}
+                                <TextInput className={'border-[#e5e7eb] border-2 rounded-lg py-[8px]'} placeholder={t('addCategory', {ns: 'todoSections'})!} value={category}
                                                onChange={e => setCategory(e.target.value)}/>
                             }
                         </div>
@@ -111,12 +128,12 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
                             <RoundedButton
                                 onClick={handleClose}
                                 className={'bg-gray-300'}>
-                                Cancel
+                                {t('cancelButton', {ns: 'todoSections'})}
                             </RoundedButton>
                             <RoundedButton
                                 className={'bg-mediumBlue'}
                                 onClick={handleSend}>
-                                Add
+                                {t('addButton', {ns: 'todoSections'})}
                             </RoundedButton>
                         </div>
                     </div>

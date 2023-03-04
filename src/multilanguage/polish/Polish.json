@@ -41,10 +41,15 @@
     "total": "Wszystko",
     "categoriesTitle": "Kategorie",
     "addTodo": "Dodaj do zrobienia",
-    "addTodoSection": {
+    "todoSections": {
+      "priority": "Priorytet",
+      "deadline": "Termin ostateczny",
       "title": "Tytuł",
       "description": "Opis",
-      "addCategory": "Dodaj kategorię"
+      "addCategory": "Dodaj kategorię",
+      "addButton": "Dodać",
+      "cancelButton": "Anulować",
+      "editButton": "Edytować"
     },
     "priorities": {
       "important": "Ważny priorytet",

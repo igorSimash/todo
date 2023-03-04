@@ -41,10 +41,15 @@
     "total": "Всього",
     "categoriesTitle": "Категорії",
     "addTodo": "Додати завдання",
-    "addTodoSection": {
+    "todoSections": {
+      "priority": "Пріорітет",
+      "deadline": "Дедлайн",
       "title": "Назва",
       "description": "Опис",
-      "addCategory": "Додати категорію"
+      "addCategory": "Додати категорію",
+      "addButton": "Додати",
+      "cancelButton": "Скасувати",
+      "editButton": "Редагувати"
     },
     "priorities": {
       "important": "Важливий пріоритет",

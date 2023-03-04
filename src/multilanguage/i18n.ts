@@ -16,7 +16,8 @@ const resources = {
         afterSubmit: English.after_submit,
         error: English.errors,
         todos: English.todos,
-        todosAddTodo: English.todos.addTodoSection
+        todoSections: English.todos.todoSections,
+        todoPriorities: English.todos.priorities
     },
     'uk-UA': {
         main: Ukrainian.main,
@@ -29,7 +30,8 @@ const resources = {
         afterSubmit: Ukrainian.after_submit,
         error: Ukrainian.errors,
         todos: Ukrainian.todos,
-        todosAddTodo: Ukrainian.todos.addTodoSection
+        todoSections: Ukrainian.todos.todoSections,
+        todoPriorities: Ukrainian.todos.priorities
     },
     'pl-PL': {
         main: Polish.main,
@@ -42,7 +44,8 @@ const resources = {
         afterSubmit: Polish.after_submit,
         error: Polish.errors,
         todos: Polish.todos,
-        todosAddTodo: Polish.todos.addTodoSection
+        todoSections: Polish.todos.todoSections,
+        todoPriorities: Polish.todos.priorities
     }
 }
 

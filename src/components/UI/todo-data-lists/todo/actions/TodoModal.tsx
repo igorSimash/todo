@@ -6,34 +6,52 @@ import ClassIcon from '@mui/icons-material/Class';
 import ClearIcon from '@mui/icons-material/Clear';
 import TodoCheckbox from "../../../input/TodoCheckbox";
 import InputNoBorder from "../../../input/InputNoBorder";
-import ItemSelect from "../../../select/ItemSelect";
-import {priorities} from "../../../../../assets/Priorities";
+import ItemSelect from "../../../select/item-select/ItemSelect";
 import {SelectChangeEvent} from "@mui/material/Select";
 import DateTimeInput from "../../../input/DateTimeInput";
 import RoundedButton from "../../../button/RoundedButton";
 import {useDispatch} from "react-redux";
 import {fetchTodos} from "../../../../../redux/action-creators/fetchTodos";
 import TextInput from "../../../input/TextInput";
+import {useTranslation} from "react-i18next";
 
 interface ITodoModal {
     closeModal(): void;
+
     modalIsOpen: boolean;
     todo: ITodo;
 }
 
 
 const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
+    const {t} = useTranslation(['todos', 'todoSections', 'todoPriorities']);
     const {id, deadline, title, description, priority_id, category_id, completed} = todo;
     const {categories} = useTypedSelector(state => state.todos);
-    const category = useMemo(() => categories.find(c => c.id === category_id)?.name || 'All', [categories, category_id])
+    const category = useMemo(() => categories.find(c => c.id === category_id)?.name || t('allCategory', {ns: 'todos'})!, [categories, category_id, t])
     const deadlineState = deadline?.slice(0, 16) || '';
     const [newTitle, setNewTitle] = useState(title);
     const [newDescription, setNewDescription] = useState(description);
-    const [newCategory, setNewCategory] = useState(categories.find(c => c.id === category_id)?.name || 'All');
+    const [newCategory, setNewCategory] = useState(category);
     const [addCategory, setAddCategory] = useState(false);
     const [newPriorityId, setNewPriorityId] = useState(priority_id);
     const [newDeadline, setNewDeadline] = useState(deadlineState);
     const dispatch = useDispatch();
+
+    const priorities = [
+        {
+            id: 1,
+            name: t('important', {ns: 'todoPriorities'})
+        },
+        {
+            id: 2,
+            name: t('medium', {ns: 'todoPriorities'})
+        },
+        {
+            id: 3,
+            name: t('noPriority', {ns: 'todoPriorities'})
+        }
+    ];
+
     const handleClose = () => {
         closeModal();
         setNewTitle(title);
@@ -50,7 +68,7 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
             title: newTitle,
             description: newDescription,
             priorityId: newPriorityId,
-            category: newCategory !== 'All' ? newCategory : '',
+            category: newCategory !== t('allCategory', {ns: 'todos'})! ? newCategory : '',
             deadline: newDeadline
         })
 
@@ -69,7 +87,7 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
 
 
     const handleChangeCategory = (e: SelectChangeEvent) => {
-        if (e.target.value === 'Add category') {
+        if (e.target.value === t('addCategory', {ns: 'todoSections'})) {
             setAddCategory(true);
             setNewCategory('');
         } else {
@@ -116,11 +134,13 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                             <TodoCheckbox priorityId={priority_id} onClick={handleCompleteTodo} checked={!!completed}/>
                         </div>
                         <div className={'flex flex-col gap-2 mt-1 h-full w-full'}>
-                            <TextInput value={newTitle} className={'font-bold text-lg h-9 border-black/70 focus:border-[1px]'}
-                                           onChange={e => setNewTitle(e.target.value)} placeholder={'Title'}/>
-                            <InputNoBorder value={newDescription} className={'h-full '}
+                            <TextInput value={newTitle}
+                                       className={'font-bold text-lg h-9 border-black/70 focus:border-[1px]'}
+                                       onChange={e => setNewTitle(e.target.value)}
+                                       placeholder={t('title', {ns: 'todoSections'})!}/>
+                            <InputNoBorder value={newDescription} className={'h-full'}
                                            onChange={e => setNewDescription(e.target.value)}
-                                           placeholder={'Description'}/>
+                                           placeholder={t('description', {ns: 'todoSections'})!}/>
                         </div>
                     </div>
                 </div>
@@ -128,19 +148,23 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                 <div className={'border-l-2 bg-gray-200/50 grid-in-[rightSide] p-4 flex flex-col gap-4'}>
                     <div className={'border-b-2'}>
                         <span className={'text-sm text-black/50 font-medium'}>
-                            Category
+                            {t('categoriesTitle', {ns: 'todos'})}
                         </span>
                         <ItemSelect
-                            options={[{name: 'All', id: 0}].concat(categories).concat({name: 'Add category', id: -1})}
+                            options={[{
+                                name: t('allCategory', {ns: 'todos'})!,
+                                id: 0
+                            }].concat(categories).concat({name: t('addCategory', {ns: 'todoSections'})!, id: -1})}
                             disableUnderline
-                            item={addCategory ? 'Add category' : newCategory} setItem={handleChangeCategory}/>
+                            item={addCategory ? t('addCategory', {ns: 'todoSections'})! : newCategory}
+                            setItem={handleChangeCategory}/>
                     </div>
                     {
                         addCategory
                         &&
                         <div className={'border-b-2'}>
                             <span className={'text-sm text-black/50 font-medium'}>
-                                Add category
+                                {t('addCategory', {ns: 'todoSections'})}
                             </span>
                             <InputNoBorder className={'border-[1px] mt-2'} value={newCategory}
                                            onChange={e => setNewCategory(e.target.value)}/>
@@ -148,7 +172,7 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                     }
                     <div className={'border-b-2'}>
                         <span className={'text-sm text-black/50 font-medium '}>
-                            Priority
+                            {t('priority', {ns: 'todoSections'})}
                         </span>
                         <ItemSelect
                             options={priorities} disableUnderline
@@ -157,11 +181,11 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                     </div>
                     <div className={'border-b-2'}>
                         <span className={'text-sm text-black/50 font-medium '}>
-                            Deadline
+                            {t('deadline', {ns: 'todoSections'})}
                         </span>
                         <DateTimeInput value={newDeadline?.slice(0, 16)}
                                        onChange={e => setNewDeadline(e.target.value)}
-                                        className={'w-full'}/>
+                                       className={'w-full'}/>
 
                     </div>
 
@@ -170,12 +194,12 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                     <RoundedButton
                         onClick={handleClose}
                         className={'bg-gray-300'}>
-                        Cancel
+                        {t('cancelButton', {ns: 'todoSections'})}
                     </RoundedButton>
                     <RoundedButton
                         className={'bg-mediumBlue'}
                         onClick={handleSend}>
-                        Edit
+                        {t('editButton', {ns: 'todoSections'})}
                     </RoundedButton>
                 </div>
             </div>
