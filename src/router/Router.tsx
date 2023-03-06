@@ -9,7 +9,7 @@ import ForgotPassFinal from "../components/pages/forgot-pass/ForgotPassFinal";
 import Todos from "../components/pages/todos/Todos";
 import ChangePass from "../components/pages/change-pass/ChangePass";
 
-const Router = () => {
+const Router:React.FC = () => {
     return (
         <Routes>
             <Route path="/" element={<Main/>}/>
