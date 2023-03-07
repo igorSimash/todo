@@ -44,12 +44,12 @@ const ForgotPassStart: React.FC = () => {
             <div className={'h-full w-5/12 bg-lightBlue'}>
 
             </div>
-            <div className={'relative w-7/12'}>
+            <form className={'relative w-7/12'}>
                 <div className={'absolute left-1/2 -translate-x-1/2 top-10'}>
                     <LanguageSelect/>
                 </div>
                 <div className={'flex justify-center items-center flex-col h-full'}>
-                    <form className={'flex flex-col relative gap-14 w-80'}>
+                    <div className={'flex flex-col relative gap-14 w-80'}>
                         <div className={'flex flex-col gap-2'}>
                             <span className={'font-semibold text-3xl'}>
                                 {t('title', {ns: 'forgot_pass'})}
@@ -72,13 +72,13 @@ const ForgotPassStart: React.FC = () => {
                                 value={t('submit', {ns: 'forgot_pass'})}/>
 
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end'}>
                     <span className={'font-semibold'}>{t('signInQues', {ns: 'forgot_pass'})}</span>
                     <Link to={'/login'} className={'font-bold text-solidBlue text-lg'}>{t('signInLink', {ns: 'forgot_pass'})}</Link>
                 </div>
-            </div>
+            </form>
         </div>
     );
 };

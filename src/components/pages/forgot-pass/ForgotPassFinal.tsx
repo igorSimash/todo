@@ -49,7 +49,7 @@ const ForgotPassFinal: React.FC = () => {
             <div className={'h-full w-5/12 bg-lightBlue'}>
 
             </div>
-            <div className={'relative w-7/12'}>
+            <form className={'relative w-7/12'}>
                 <div className={'absolute left-1/2 -translate-x-1/2 top-10'}>
                     <LanguageSelect/>
                 </div>
@@ -79,7 +79,7 @@ const ForgotPassFinal: React.FC = () => {
                     <span className={'font-semibold'}>{t('signInQues', {ns: 'forgot_pass_final'})}</span>
                     <Link to={'/login'} className={'font-bold text-solidBlue text-lg'}>{t('signInLink', {ns: 'forgot_pass_final'})}</Link>
                 </div>
-            </div>
+            </form>
         </div>
     );
 };

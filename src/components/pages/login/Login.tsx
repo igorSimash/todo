@@ -32,7 +32,7 @@ const Login = () => {
 
     return (
         <div className={'h-screen flex'}>
-            <div className={'relative w-5/12'}>
+            <form className={'relative w-5/12'}>
                 <div className={'absolute left-1/2 -translate-x-1/2 top-10'}>
                     <LanguageSelect/>
                 </div>
@@ -75,7 +75,7 @@ const Login = () => {
                     <Link to={'/registration/start'}
                           className={'font-bold text-solidBlue text-lg'}>{t('signUpLink', {ns: 'login'})}</Link>
                 </div>
-            </div>
+            </form>
             <div className={'h-full w-7/12 bg-lightBlue'}>
 
             </div>
