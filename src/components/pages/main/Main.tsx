@@ -15,12 +15,13 @@ const Main: React.FC = () => {
                 <div className={'flex items-center'}>
                     LOGO
                 </div>
-                <div className={'flex gap-5 items-center'}>
+                <div className={'flex gap-5 s:gap-1 items-center'}>
                     <LanguageSelect disableUnderline textAlign={'right'}/>
-                    <Link to={'/login'} className={'transition-all hover:opacity-80 s:bg-mediumBlue s:text-coolWhite s:px-1 s:py-1 s:rounded-lg s:font-medium'}>
+                    <Link to={'/login'} className={'transition-all hover:opacity-80 s:px-1 s:py-1 s:rounded-lg s:font-medium'}>
                         {t('signInLink', {ns: 'main'})}
                     </Link>
-                    {screenWidth > 590 &&
+                    {screenWidth > 590
+                        &&
                         <Link to={'/registration/start'}
                             className={'bg-mediumBlue text-coolWhite font-semibold tracking-wide text-center px-5 py-2 rounded-lg transition-all hover:bg-opacity-80'}>
                             {t('getStartedLink', {ns: 'main'})}

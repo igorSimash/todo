@@ -46,7 +46,7 @@ const LanguageSelect: React.FC<ILangSelectProps> = ({changeInDB = false, classNa
 
     return (
         <div className={'flex items-center'}>
-            <FormControl className={'focus:bg-white'} variant="standard" sx={{m: 1, width: 145, textAlign}}>
+            <FormControl className={'focus:bg-white'} variant="standard" sx={{m: 1, width: 'fitContent', maxWidth: '110px', textAlign}}>
                 <Select
                     labelId="demo-simple-select-standard-label"
                     id="demo-simple-select-standard"
