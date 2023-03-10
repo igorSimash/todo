@@ -41,10 +41,10 @@ const ForgotPassStart: React.FC = () => {
 
     return (
         <div className={'h-screen flex'}>
-            <div className={'h-full w-5/12 bg-lightBlue'}>
+            <div className={'h-full w-5/12 bg-lightBlue sm:w-3/12 s:hidden'}>
 
             </div>
-            <form className={'relative w-7/12'}>
+            <form className={'relative w-7/12 sm:w-9/12 s:w-full'}>
                 <div className={'absolute left-1/2 -translate-x-1/2 top-10'}>
                     <LanguageSelect/>
                 </div>
@@ -74,7 +74,7 @@ const ForgotPassStart: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end'}>
+                <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end w-80 justify-center'}>
                     <span className={'font-semibold'}>{t('signInQues', {ns: 'forgot_pass'})}</span>
                     <Link to={'/login'} className={'font-bold text-solidBlue text-lg'}>{t('signInLink', {ns: 'forgot_pass'})}</Link>
                 </div>

@@ -32,8 +32,8 @@ const Login = () => {
 
     return (
         <div className={'h-screen flex'}>
-            <form className={'relative w-5/12'}>
-                <div className={'absolute left-1/2 -translate-x-1/2 top-10'}>
+            <form className={'relative w-5/12 sm:w-9/12 s:w-full'}>
+                <div className={'absolute left-1/2 -translate-x-1/2 top-5'}>
                     <LanguageSelect/>
                 </div>
                 <div className={'flex justify-center items-center flex-col h-full'}>
@@ -57,28 +57,27 @@ const Login = () => {
                                 }
                             </SubmitError>
                         </div>
-                        <div>
+                        <div className={'flex flex-col items-center gap-3'}>
                             <SubmitInput onClick={handleClick} value={t('submit', {ns: 'login'})}/>
+                            {error === 'Invalid password' &&
+                                <Link to={'/forgot-pass'}
+                                      className={'text-blue-600 text-md underline'}>
+                                    {t('resetPassword', {ns: 'login'})}
+                                </Link>
+                            }
                         </div>
                     </div>
                 </div>
 
-                {error === 'Invalid password' &&
-                    <Link to={'/forgot-pass'}
-                          className={'absolute left-1/2 -translate-x-1/2 bottom-20 text-blue-600 text-md underline'}>
-                        {t('resetPassword', {ns: 'login'})}
-                    </Link>
-                }
 
-                <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end'}>
+
+                <div className={'absolute left-1/2 -translate-x-1/2 bottom-10 flex gap-3 items-end justify-center w-80'}>
                     <span className={'font-semibold'}>{t('signUpQues', {ns: 'login'})}</span>
                     <Link to={'/registration/start'}
                           className={'font-bold text-solidBlue text-lg'}>{t('signUpLink', {ns: 'login'})}</Link>
                 </div>
             </form>
-            <div className={'h-full w-7/12 bg-lightBlue'}>
-
-            </div>
+            <div className={'h-full w-7/12 sm:w-3/12 s:hidden bg-lightBlue'}></div>
         </div>
     );
 };
