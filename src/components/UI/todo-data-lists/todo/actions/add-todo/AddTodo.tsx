@@ -103,7 +103,7 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
                                    onChange={e => setTitle(e.target.value)}/>
                     <InputNoBorder className={'resize-y h-24'} placeholder={t('description', {ns: 'todoSections'})!} value={description}
                                    onChange={e => setDescription(e.target.value)}/>
-                    <div className={'flex gap-3 border-b-2 py-2'}>
+                    <div className={'flex gap-3 s:gap-2 border-b-2 s:border-none py-2 s:flex-col'}>
                         <DateTimeInput className={'border-2 rounded-lg py-1'}
                                        onChange={e => setDeadline(e.target.value)} value={deadline.slice(0, 16)}/>
                         <ItemSelect options={priorities}
@@ -111,20 +111,20 @@ const AddTodo: React.FC<{selectedCategory?: string | undefined;}> = ({selectedCa
                                     disableUnderline
                                     item={(priorities.find(pr => pr.id === priority)!.name)} setItem={e => setPriority((priorities.find(pr => pr.name === e.target.value))!.id)}/>
                     </div>
-                    <div className={'py-2 flex justify-between'}>
-                        <div className={'flex items-center gap-2'}>
+                    <div className={'py-2 s:pt-0 flex justify-between sm:flex-col sm:gap-4 s:flex-col s:gap-4'}>
+                        <div className={'flex items-center s:items-start gap-2 s:flex-col'}>
                             <ItemSelect
                                 options={[{name: t('allCategory', {ns: 'todos'}), id: 0}].concat(categories).concat({name: t('addCategory', {ns: 'todoSections'}) ,id: -1})}
-                                disableUnderline className={'border-2 rounded-lg w-[160px]'}
+                                disableUnderline className={'border-2 rounded-lg w-[160px] s:w-full'}
                                 item={categoryValue} setItem={handleChangeCategory}/>
                             {
                                 addCategory
                                 &&
-                                <TextInput className={'border-[#e5e7eb] border-2 rounded-lg py-[8px]'} placeholder={t('addCategory', {ns: 'todoSections'})!} value={category}
+                                <TextInput className={'border-[#e5e7eb] border-2 rounded-lg py-[8px] s:w-full'} placeholder={t('addCategory', {ns: 'todoSections'})!} value={category}
                                                onChange={e => setCategory(e.target.value)}/>
                             }
                         </div>
-                        <div className={'flex gap-3'}>
+                        <div className={'flex gap-3 s:justify-end self-end'}>
                             <RoundedButton
                                 onClick={handleClose}
                                 className={'bg-gray-300'}>

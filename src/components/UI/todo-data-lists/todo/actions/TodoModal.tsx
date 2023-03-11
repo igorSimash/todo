@@ -114,9 +114,10 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
             modalIsOpen={modalIsOpen}>
             <div
                 className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-coolWhite rounded-lg outline-0
-                 w-[830px] h-[92%] grid grid-cols-[70%_30%] grid-rows-[3rem_1fr_4rem] grid-areas-modal`}
+                 w-[830px] h-[92%] grid grid-cols-[70%_30%] grid-rows-[3rem_1fr_4rem] grid-areas-modal sm:w-11/12 s:w-11/12
+                 s:flex s:flex-col `}
             >
-                <div className={'grid-in-header flex items-center justify-between border-b-2 px-8'}>
+                <div className={'grid-in-header flex items-center justify-between border-b-2 px-8 s:py-2'}>
                     <div className={'flex items-center gap-1'}>
                         <ClassIcon sx={{fontSize: 'small'}}/>
                         <span
@@ -128,7 +129,7 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                         <ClearIcon style={{color: 'gray'}}/>
                     </div>
                 </div>
-                <div className={'p-4 grid-in-[textarea]'}>
+                <div className={'p-4 grid-in-[textarea] s:h-[40%]'}>
                     <div className={'flex h-full'}>
                         <div>
                             <TodoCheckbox priorityId={priority_id} onClick={handleCompleteTodo} checked={!!completed}/>
@@ -145,7 +146,7 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                     </div>
                 </div>
 
-                <div className={'border-l-2 bg-gray-200/50 grid-in-[rightSide] p-4 flex flex-col gap-4'}>
+                <div className={'border-l-2 bg-gray-200/50 grid-in-[rightSide] p-4 s:p-2.5 flex flex-col gap-4 s:flex-row s:flex-wrap s:items-center'}>
                     <div className={'border-b-2'}>
                         <span className={'text-sm text-black/50 font-medium'}>
                             {t('categoriesTitle', {ns: 'todos'})}
@@ -170,7 +171,7 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                                            onChange={e => setNewCategory(e.target.value)}/>
                         </div>
                     }
-                    <div className={'border-b-2'}>
+                    <div className={'border-b-2 w-1/2'}>
                         <span className={'text-sm text-black/50 font-medium '}>
                             {t('priority', {ns: 'todoSections'})}
                         </span>
@@ -179,18 +180,16 @@ const TodoModal: React.FC<ITodoModal> = ({closeModal, modalIsOpen, todo}) => {
                             item={(priorities.find(pr => pr.id === newPriorityId)!.name)}
                             setItem={e => setNewPriorityId((priorities.find(pr => pr.name === e.target.value))!.id)}/>
                     </div>
-                    <div className={'border-b-2'}>
+                    <div className={'border-b-2 flex flex-col w-[100%]'}>
                         <span className={'text-sm text-black/50 font-medium '}>
                             {t('deadline', {ns: 'todoSections'})}
                         </span>
                         <DateTimeInput value={newDeadline?.slice(0, 16)}
                                        onChange={e => setNewDeadline(e.target.value)}
                                        className={'w-full'}/>
-
                     </div>
-
                 </div>
-                <div className={'grid-in-[buttons] flex justify-end items-s gap-4 px-4'}>
+                <div className={'grid-in-[buttons] flex justify-end items-s gap-4 px-4 s:mt-auto s:mb-5'}>
                     <RoundedButton
                         onClick={handleClose}
                         className={'bg-gray-300'}>

@@ -31,12 +31,12 @@ const Category: React.FC<ICategory> = ({name, onClick, className, deletable= fal
         <div
             onClick={onClick}
             className={`cursor-pointer text-md rounded-md py-1 px-1 flex items-center gap-1.5 
-                hover:bg-lightBlue/60 transition-all overflow-x-hidden overflow ${className}`}
+                hover:bg-lightBlue/60 transition-all overflow-x-hidden ${className}`}
             onMouseEnter={(e) => setTodoHovered(true)}
             onMouseLeave={(e) => setTodoHovered(false)}>
             <CircleIcon sx={{color: '#0396a6', fontSize: '10px'}}/>
             <div className={'flex justify-between w-full'}>
-                <span className={`font-s`}>{name}</span>
+                <span className={'font-s w-32 overflow-x-hidden text-ellipsis'}>{name}</span>
                 {
                     deletable
                     &&

@@ -1,27 +1,20 @@
 import React from 'react';
-import Category from "../../todo-data-lists/category/Category";
-import {useTypedSelector} from "../../../../hooks/useTypedSelect";
-import {useTranslation} from "react-i18next";
+import {useWindowSize} from "../../../../hooks/useWindowSize";
+import CategoryDrawer from "../../drawer/CategoryDrawer";
+import CategoryAside from "../../aside/CategoryAside";
 
-const CategoriesAside: React.FC<{selectedCategory: number; setSelectedCategory: (id: number) => void}> = ({selectedCategory, setSelectedCategory}) => {
-    const {t} = useTranslation('todos');
-    const {categories} = useTypedSelector(state => state.todos);
-    const categoriesToRender = [{id: 0, name: t('allCategory', {ns: 'todos'})}].concat([...categories]).concat([{id: -1, name: t('completedCategory', {ns: 'todos'})}]);
+const CategoriesAside: React.FC<{ selectedCategory: number; setSelectedCategory: (id: number) => void }> = ({selectedCategory,setSelectedCategory}) => {
+    const [width] = useWindowSize();
+
     return (
-        <aside className={'h-full w-64'}>
-            <div className={'flex flex-col gap-2 mx-6 h-full py-8'}>
-                <span className={'text-xl font-semibold'}>{t('categoriesTitle', {ns: 'todos'})}</span>
-                <div className={'flex flex-col gap-0.5 overflow-y-auto'}>
-                    {categoriesToRender.map((el) =>
-                        <Category
-                            className={`${el.id === selectedCategory && 'bg-lightBlue/60'} ${[0,-1].includes(el.id) && 'font-bold'}`}
-                            name={el.name}
-                            key={el.id}
-                            deletable={![0,-1].includes(el.id)}
-                            onClick={() => setSelectedCategory(el.id)}/>)
-                    }
-                </div>
-            </div>
+        <aside className={`h-full w-64 ${width < 800 && 'w-fit py-7 px-1'} py-8`}>
+            {
+                width > 800
+                    ?
+                    <CategoryAside selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
+                    :
+                    <CategoryDrawer selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
+            }
         </aside>
     );
 };
